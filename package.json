@@ -1,0 +1,25 @@
+{
+  "name": "festa-junina",
+  "version": "1.0.0",
+  "description": "App real do Arraiá Digital",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.0.2",
+    "vite": "^8.0.13"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.105.4",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "react-router-dom": "^7.15.1",
+    "tslib": "^2.8.1"
+  }
+}

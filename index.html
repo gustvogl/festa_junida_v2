@@ -1,0 +1,2388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Arraiá Digital</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#b7102a",
+        "on-primary": "#ffffff",
+        "primary-container": "#db313f",
+        "primary-fixed": "#ffdad8",
+        "primary-fixed-dim": "#ffb3b1",
+        "on-primary-fixed": "#410007",
+        "on-primary-fixed-variant": "#92001c",
+        "on-primary-container": "#fffbff",
+        "secondary": "#7d5800",
+        "on-secondary": "#ffffff",
+        "secondary-container": "#ffb702",
+        "on-secondary-container": "#6b4b00",
+        "secondary-fixed": "#ffdea9",
+        "secondary-fixed-dim": "#ffba27",
+        "on-secondary-fixed": "#271900",
+        "on-secondary-fixed-variant": "#5e4100",
+        "tertiary": "#00657a",
+        "on-tertiary": "#ffffff",
+        "tertiary-container": "#007f99",
+        "on-tertiary-container": "#fafdff",
+        "tertiary-fixed": "#b2ebff",
+        "tertiary-fixed-dim": "#69d4f4",
+        "on-tertiary-fixed": "#001f27",
+        "on-tertiary-fixed-variant": "#004e5f",
+        "error": "#ba1a1a",
+        "on-error": "#ffffff",
+        "error-container": "#ffdad6",
+        "on-error-container": "#93000a",
+        "background": "#fff8f5",
+        "on-background": "#28180b",
+        "surface": "#fff8f5",
+        "on-surface": "#28180b",
+        "surface-variant": "#fbddc7",
+        "on-surface-variant": "#5b403f",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#fff1e9",
+        "surface-container": "#ffeadc",
+        "surface-container-high": "#ffe3cf",
+        "surface-container-highest": "#fbddc7",
+        "surface-dim": "#f2d4bf",
+        "surface-bright": "#fff8f5",
+        "surface-tint": "#bb152c",
+        "inverse-surface": "#3f2d1e",
+        "inverse-on-surface": "#ffede2",
+        "inverse-primary": "#ffb3b1",
+        "outline": "#8f6f6e",
+        "outline-variant": "#e4bebc",
+      },
+      fontFamily: {
+        "headline-xl": ["Bricolage Grotesque"],
+        "headline-lg": ["Bricolage Grotesque"],
+        "headline-md": ["Bricolage Grotesque"],
+        "body-lg": ["Be Vietnam Pro"],
+        "body-md": ["Be Vietnam Pro"],
+        "label-caps": ["Be Vietnam Pro"],
+      },
+      fontSize: {
+        "headline-xl": ["48px", { lineHeight:"56px", letterSpacing:"-0.02em", fontWeight:"800" }],
+        "headline-lg": ["32px", { lineHeight:"40px", fontWeight:"700" }],
+        "headline-md": ["24px", { lineHeight:"32px", fontWeight:"600" }],
+        "body-lg": ["18px", { lineHeight:"28px", fontWeight:"400" }],
+        "body-md": ["16px", { lineHeight:"24px", fontWeight:"400" }],
+        "label-caps": ["14px", { lineHeight:"20px", fontWeight:"700" }],
+      },
+      spacing: {
+        "gutter": "24px",
+        "unit": "8px",
+        "container-max": "1200px",
+        "margin-edge": "32px",
+      },
+      borderRadius: {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px",
+      }
+    }
+  }
+}
+</script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; }
+  body { font-family: 'Be Vietnam Pro', sans-serif; min-height: 100dvh; background-color: #fff8f5; }
+
+  .material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal; font-style: normal; font-size: 24px;
+    line-height: 1; letter-spacing: normal; text-transform: none;
+    display: inline-block; white-space: nowrap; direction: ltr;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Textures */
+  .wood-texture {
+    background-color: #3f2d1e;
+    background-image: repeating-linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px, transparent 10px);
+  }
+  .wood-plank {
+    background: linear-gradient(180deg, #3f2d1e 0%, #2a1b11 100%);
+    background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.03) 2px, rgba(255,255,255,0.03) 4px);
+  }
+  .chita-pattern {
+    background-color: #db313f;
+    background-image: radial-gradient(circle at 50% 50%, #ffb702 10%, transparent 15%),
+      radial-gradient(circle at 0% 100%, #007f99 10%, transparent 15%),
+      radial-gradient(circle at 100% 0%, #007f99 10%, transparent 15%);
+    background-size: 30px 30px;
+  }
+  .paper-texture {
+    background-color: #fff1e9;
+    background-image: url('data:image/svg+xml;utf8,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="100" height="100" filter="url(%23noise)" opacity="0.05"/></svg>');
+  }
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  }
+
+  /* Bandeirinhas animation */
+  @keyframes swing { 0%{ transform:rotate(-4deg); } 100%{ transform:rotate(4deg); } }
+  .bandeirinha { animation: swing 2.5s ease-in-out infinite alternate; }
+  .bandeirinha:nth-child(2n) { animation-delay: 0.4s; }
+  .bandeirinha:nth-child(3n) { animation-delay: 0.8s; }
+  .bandeirinha:nth-child(4n) { animation-delay: 1.2s; }
+
+  /* Scrollbar hide */
+  .hide-scrollbar::-webkit-scrollbar { display: none; }
+  .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+  /* Page transitions */
+  .page { display: none; animation: fadeIn 0.2s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(6px); } to { opacity:1; transform: translateY(0); } }
+
+  /* Jail bars */
+  .jail-bars {
+    background: repeating-linear-gradient(90deg, transparent 0, transparent 18px, rgba(40,24,11,0.55) 18px, rgba(40,24,11,0.55) 22px);
+    border-radius: inherit;
+  }
+
+  /* Toast */
+  #toast-container {
+    position: fixed; bottom: 88px; left: 50%; transform: translateX(-50%);
+    z-index: 9999; display: flex; flex-direction: column; gap: 8px; align-items: center; pointer-events: none;
+  }
+  .toast-item {
+    max-width: min(90vw, 380px); padding: 0.9rem 1.2rem; border-radius: 16px;
+    color: #fff; font-family: 'Be Vietnam Pro', sans-serif; font-weight: 600; font-size: 15px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.18); opacity: 0; transform: translateY(12px);
+    transition: transform 180ms ease, opacity 180ms ease; pointer-events: auto;
+  }
+  .toast-item.show { opacity: 1; transform: translateY(0); }
+
+  /* Active nav */
+  .nav-active { background-color: #db313f !important; color: #fff !important; border-radius: 0.75rem; }
+
+  /* Crystal ball hover */
+  .crystal-ball { transition: transform 0.3s ease, box-shadow 0.3s ease; }
+  .crystal-ball:hover { transform: scale(1.05); box-shadow: 0 0 40px 15px rgba(0,101,122,0.5), inset 0 -20px 40px rgba(0,0,0,0.6); }
+  .crystal-ball:active { transform: scale(0.96); }
+
+  /* Sidebar desktop */
+  @media (min-width: 768px) {
+    #main-content { margin-left: 320px; }
+    #mobile-topbar { display: none !important; }
+    #mobile-bottomnav { display: none !important; }
+    #desktop-sidebar { display: flex !important; }
+  }
+</style>
+</head>
+<body class="bg-background text-on-background bg-noise">
+
+<!-- TOAST -->
+<div id="toast-container"></div>
+
+<!-- MOBILE TOP BAR -->
+<header id="mobile-topbar" class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter h-16 bg-surface-container-highest border-b-4 border-secondary shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] md:hidden">
+  <button onclick="openHamburger()" class="text-primary hover:rotate-2 hover:scale-105 transition-transform p-2">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">menu</span>
+  </button>
+  <h1 class="font-headline-xl text-2xl text-primary font-extrabold">Arraiá Digital</h1>
+  <div class="flex items-center gap-1 bg-secondary-container px-3 py-1 rounded-full text-on-secondary-container font-label-caps text-sm shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)]">
+    <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">toll</span>
+    <span id="token-badge-mobile">0</span>
+  </div>
+</header>
+
+<!-- DESKTOP SIDEBAR -->
+<aside id="desktop-sidebar" class="hidden md:flex flex-col fixed left-0 top-0 h-full w-80 bg-surface-container border-r-8 border-secondary-container shadow-[8px_0px_0px_0px_rgba(74,55,40,0.4)] rounded-r-xl z-40 p-gutter overflow-y-auto">
+  <div class="flex flex-col mb-8 mt-4 gap-4">
+    <h1 class="font-headline-xl text-3xl text-primary font-extrabold">Arraiá Digital</h1>
+    <div class="flex items-center gap-4 bg-surface-variant p-4 rounded-lg w-full border-2 border-outline-variant shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)]">
+      <div class="w-12 h-12 rounded-full bg-secondary-container flex items-center justify-center border-2 border-secondary overflow-hidden shrink-0">
+        <span class="material-symbols-outlined text-secondary text-2xl" style="font-variation-settings:'FILL' 1;">account_circle</span>
+      </div>
+      <div class="min-w-0">
+        <h2 id="sidebar-name" class="font-headline-md text-lg text-secondary truncate">Festeiro Digital</h2>
+        <p id="sidebar-fichas" class="font-body-md text-sm text-on-surface-variant">0 Fichas</p>
+        <p id="sidebar-grains" class="font-body-md text-sm text-secondary">0 Grãos de Milho</p>
+        <p id="sidebar-level" class="font-label-caps text-xs text-tertiary">Nível: Caipira Iniciante</p>
+      </div>
+    </div>
+  </div>
+  <nav class="flex flex-col gap-2" id="sidebar-nav">
+    <a onclick="navigate('inicio')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="inicio">
+      <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">home</span> Início
+    </a>
+    <a onclick="navigate('perfil')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="perfil">
+      <span class="material-symbols-outlined">person</span> Meu Perfil
+    </a>
+    <a onclick="navigate('comida')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="comida">
+      <span class="material-symbols-outlined">restaurant</span> Comida
+    </a>
+    <a onclick="navigate('correio')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="correio">
+      <span class="material-symbols-outlined">mail</span> Correio
+    </a>
+    <a onclick="navigate('jogos')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="jogos">
+      <span class="material-symbols-outlined">storefront</span> Barracas
+    </a>
+    <div class="mt-6 pt-6 border-t-2 border-outline-variant flex flex-col gap-2">
+      <a onclick="navigate('shows')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="shows">
+        <span class="material-symbols-outlined">event</span> Shows
+      </a>
+      <a onclick="navigate('vidente')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="vidente">
+        <span class="material-symbols-outlined">psychology</span> Vidente
+      </a>
+      <a onclick="navigate('prisao')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="prisao">
+        <span class="material-symbols-outlined">security</span> Prisão
+      </a>
+      <a id="sidebar-prefeito-link" onclick="navigate('prefeito')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full hidden" data-page="prefeito">
+        <span class="material-symbols-outlined">monitoring</span> Prefeito
+      </a>
+    </div>
+    <div class="mt-6 pt-6 border-t-2 border-outline-variant">
+      <a onclick="navigate('registro')" href="#" class="sidebar-link flex items-center gap-4 p-3 text-on-surface-variant hover:bg-primary-fixed hover:text-on-primary-fixed-variant transition-all hover:translate-x-2 rounded-full" data-page="registro">
+        <span class="material-symbols-outlined">app_registration</span> Cadastro/Login
+      </a>
+    </div>
+  </nav>
+</aside>
+
+<!-- HAMBURGER MENU MOBILE -->
+<div id="hamburger-overlay" class="hidden fixed inset-0 z-[9998] bg-black/50 backdrop-blur-sm">
+  <div id="hamburger-backdrop" class="absolute inset-0 cursor-pointer"></div>
+  <div class="relative w-[min(85vw,300px)] h-full bg-surface-container-highest shadow-[8px_0_32px_rgba(0,0,0,0.3)] p-6 overflow-y-auto flex flex-col gap-4">
+    <button onclick="closeHamburger()" class="absolute top-4 right-4 text-on-surface text-2xl font-bold border-none bg-transparent">×</button>
+    <h2 class="font-headline-lg text-lg text-primary font-bold mt-2">Menu do Arraiá</h2>
+    <div class="flex items-center gap-3 bg-surface-variant p-3 rounded-xl border-2 border-outline-variant">
+      <span class="material-symbols-outlined text-secondary text-3xl" style="font-variation-settings:'FILL' 1;">account_circle</span>
+      <div>
+        <p id="ham-name" class="font-bold text-secondary text-sm">---</p>
+        <p id="ham-fichas" class="text-xs text-on-surface-variant">0 Fichas</p>
+        <p id="ham-grains" class="text-xs text-secondary">0 Grãos de Milho</p>
+      </div>
+    </div>
+    <nav class="flex flex-col gap-1">
+      <a onclick="navigate('inicio');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">home</span>Início</a>
+      <a onclick="navigate('perfil');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">person</span>Meu Perfil</a>
+      <a onclick="navigate('comida');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">restaurant</span>Comida</a>
+      <a onclick="navigate('correio');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">mail</span>Correio</a>
+      <a onclick="navigate('jogos');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">storefront</span>Barracas</a>
+      <a onclick="navigate('shows');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">event</span>Shows</a>
+      <a onclick="navigate('vidente');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">psychology</span>Vidente</a>
+      <a onclick="navigate('prisao');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">security</span>Prisão</a>
+      <a id="hamburger-prefeito-link" onclick="navigate('prefeito');closeHamburger()" href="#" class="hidden flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">monitoring</span>Prefeito</a>
+      <a onclick="navigate('registro');closeHamburger()" href="#" class="flex items-center gap-3 p-3 rounded-xl text-on-surface hover:bg-primary-fixed transition-colors font-semibold"><span class="material-symbols-outlined">app_registration</span>Cadastro/Login</a>
+    </nav>
+  </div>
+</div>
+
+<!-- MOBILE BOTTOM NAV -->
+<nav id="mobile-bottomnav" class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-2 pb-3 pt-2 bg-secondary border-t-4 border-on-secondary-container shadow-[0px_-4px_0px_0px_rgba(74,55,40,0.4)] md:hidden">
+  <button onclick="navigate('inicio')" data-nav="inicio" class="bottom-nav-btn flex flex-col items-center justify-center text-on-secondary p-2 rounded-lg transition-all">
+    <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">home</span>
+    <span class="font-label-caps text-[11px] mt-0.5">Início</span>
+  </button>
+  <button onclick="navigate('jogos')" data-nav="jogos" class="bottom-nav-btn flex flex-col items-center justify-center text-on-secondary p-2 rounded-lg transition-all">
+    <span class="material-symbols-outlined">storefront</span>
+    <span class="font-label-caps text-[11px] mt-0.5">Barracas</span>
+  </button>
+  <button onclick="navigate('comida')" data-nav="comida" class="bottom-nav-btn flex flex-col items-center justify-center text-on-secondary p-2 rounded-lg transition-all">
+    <span class="material-symbols-outlined">restaurant</span>
+    <span class="font-label-caps text-[11px] mt-0.5">Comida</span>
+  </button>
+  <button onclick="navigate('correio')" data-nav="correio" class="bottom-nav-btn flex flex-col items-center justify-center text-on-secondary p-2 rounded-lg transition-all">
+    <span class="material-symbols-outlined">mail</span>
+    <span class="font-label-caps text-[11px] mt-0.5">Correio</span>
+  </button>
+  <button onclick="navigate('perfil')" data-nav="perfil" class="bottom-nav-btn flex flex-col items-center justify-center text-on-secondary p-2 rounded-lg transition-all">
+    <span class="material-symbols-outlined">person</span>
+    <span class="font-label-caps text-[11px] mt-0.5">Perfil</span>
+  </button>
+</nav>
+
+<!-- MAIN CONTENT WRAPPER -->
+<div id="main-content" class="pt-16 pb-20 md:pt-0 md:pb-0 min-h-screen">
+
+<!-- ==================== REGISTRO / INDEX ==================== -->
+<div id="page-registro" class="page active">
+  <div class="min-h-screen flex flex-col items-center justify-center p-6 relative">
+    <!-- Bandeirinhas top -->
+    <div aria-hidden="true" class="absolute top-0 left-0 w-full overflow-hidden leading-none h-16 flex pointer-events-none z-10">
+      <svg class="w-full h-full" fill="none" preserveAspectRatio="none" viewBox="0 0 1000 100" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 10 Q 250 30 500 10 T 1000 10" fill="none" stroke="#5b403f" stroke-dasharray="4 2" stroke-width="2"/>
+        <polygon class="fill-primary" points="20,12 80,15 50,80"/>
+        <polygon style="fill:#7d5800" points="120,18 180,12 150,75"/>
+        <polygon style="fill:#00657a" points="220,10 280,18 250,85"/>
+        <polygon style="fill:#ffb702" points="320,15 380,10 350,70"/>
+        <polygon class="fill-primary" points="420,12 480,18 450,80"/>
+        <polygon style="fill:#00657a" points="520,18 580,12 550,75"/>
+        <polygon style="fill:#7d5800" points="620,10 680,18 650,85"/>
+        <polygon class="fill-primary" points="720,15 780,10 750,70"/>
+        <polygon style="fill:#ffb702" points="820,12 880,18 850,80"/>
+        <polygon style="fill:#00657a" points="920,18 980,12 950,75"/>
+      </svg>
+    </div>
+    <!-- Tabs: Registro / Login -->
+    <div class="w-full max-w-[500px] mt-10 z-20">
+      <div class="flex rounded-xl overflow-hidden border-4 border-secondary shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] mb-0">
+        <button id="tab-registro" onclick="switchTab('registro')" class="flex-1 py-3 font-headline-md text-sm font-bold bg-secondary text-on-secondary transition-colors">Cadastrar</button>
+        <button id="tab-login" onclick="switchTab('login')" class="flex-1 py-3 font-headline-md text-sm font-bold bg-surface-container-highest text-on-surface-variant transition-colors">Entrar</button>
+      </div>
+
+      <!-- CADASTRO FORM -->
+      <div id="form-registro" class="bg-surface-container rounded-b-xl rounded-tr-xl border-4 border-t-0 border-secondary shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden">
+        <div class="h-4 w-full chita-pattern border-b-4 border-secondary"></div>
+        <div class="p-6 flex flex-col gap-5">
+          <h1 class="font-headline-xl text-2xl text-primary text-center font-extrabold drop-shadow-[2px_2px_0px_#fff]">O Registro do Caipira</h1>
+          <div class="bg-secondary-container text-on-secondary-container font-label-caps text-xs px-4 py-2 rounded-full border-2 border-outline shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)] -rotate-1 flex items-center gap-2 self-center">
+            <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">local_activity</span>
+            Saldo Inicial: 50 Fichas
+          </div>
+          <!-- Avatar Selection -->
+          <div class="w-full bg-surface-container-low p-4 rounded-lg border-2 border-outline border-dashed">
+            <h2 class="font-headline-md text-base text-on-surface mb-2 text-center font-semibold">Escolha seu Rosto</h2>
+            <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2 pt-2 px-2">
+              <label class="snap-center shrink-0 cursor-pointer">
+                <input checked class="peer sr-only" name="avatar" type="radio" value="1"/>
+                <div class="w-16 h-16 rounded-full border-4 border-surface-container overflow-hidden shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] peer-checked:border-primary peer-checked:ring-4 peer-checked:ring-primary-container transition-all hover:-translate-y-1">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJfmuyQ6GuB17qQp_tJhut6oOkiZfuCbpK0W5lHjLLwVu1HXMHW4oCIDHxZmgSjeNFQc6pYQ97iPaCcTYjzEOYa0py8_rg4fOuM_8E9hTxWI06qEEq8f0XBUWr24Z1mIjDAs_L-WKMgb_DCmfE7_ZKyRfQQyxt6iLIRFS2gy3cqE7ZNOiah2Gdr5PEo8Zs_BtQkAfdudg4gn95xCiqjhl6Rs4qX6aWgZSXr2ppJmxHTAeO8OhFe8MPNs6mimnEb7XFfLxfhjJQfPqX" alt="Avatar 1"/>
+                </div>
+              </label>
+              <label class="snap-center shrink-0 cursor-pointer">
+                <input class="peer sr-only" name="avatar" type="radio" value="2"/>
+                <div class="w-16 h-16 rounded-full border-4 border-surface-container overflow-hidden shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] peer-checked:border-primary peer-checked:ring-4 peer-checked:ring-primary-container transition-all hover:-translate-y-1">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_td3dXgTANfAbVVHgbxEmtviYsoewS3uzDyz8EVzKOekPCLAiFo0peM2PNFBnUMArzJDXXbjATomWglhDgjrDf6xhRP5COiIIQ1OhxBK5HE_q3wFbHDj19v2Xkho0RH4_zUUF9E3PfaI15y6VZxJZjhYH7zVfyR9yGmuZw2RwRXQNvvq7um_aOhudN1_EhccQfEd3XTRP7zp7Ki3WRS_xmPEqosjTbAnbTt8O5gmj-cmgUWQB3Nn2BbxD6b-p0UFtP2yUFHtnJx3k" alt="Avatar 2"/>
+                </div>
+              </label>
+              <label class="snap-center shrink-0 cursor-pointer">
+                <input class="peer sr-only" name="avatar" type="radio" value="3"/>
+                <div class="w-16 h-16 rounded-full border-4 border-surface-container overflow-hidden shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] peer-checked:border-primary peer-checked:ring-4 peer-checked:ring-primary-container transition-all hover:-translate-y-1">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8ZLhpHPtWv4itJi8Jn-fnDAZZ6L9zzRZmn04EhH1Bkztax0fIIAE8s-aPke-wtkhTqIqEUjR-qh55KlKBgJP9kV7Z2XwFXcC-jAoozGNgDCQlJfaJ-FPYkOcgV5BU4iudf8p3mxQAl9CPycofbpfz1ccPdu4r8c6k0e6hInpiVUo4uRRM3ZSAPignF3NzLKxZt-3ZZL-f4fzqnpYQ_zvxkWioo41djlpLpkUdVYpWoiwwnjDB4UMBbnRfQrzggV_XR3E5rZkmgPd1" alt="Avatar 3"/>
+                </div>
+              </label>
+              <label class="snap-center shrink-0 cursor-pointer">
+                <input class="peer sr-only" name="avatar" type="radio" value="4"/>
+                <div class="w-16 h-16 rounded-full border-4 border-surface-container overflow-hidden shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] peer-checked:border-primary peer-checked:ring-4 peer-checked:ring-primary-container transition-all hover:-translate-y-1">
+                  <img class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAg73wE_PlOgOv5EoSrGEomy9fonh0AGBXJklyczQCGAXD_-J20qREeZ-l0t5Pzr3WUi6GI6WDKqi-SSoiLmHq64ezYW9JIzd8KxeE39LxIwWkUqxt13ZywL5k0pxMhTZzbJS1Dl_eX4kzdzw-DMlWx8bpBlEXeJ17c_7QOJ7IfZMnKkTku4W4S6T41iIzKwWt7yQWYToVvhy0bsIgaSZpRMC-KbC1ZXXZokM1w3wJ56rqw_EW0-hl8-5g-r8cKmKM1vmTSukXW7BJb" alt="Avatar 4"/>
+                </div>
+              </label>
+            </div>
+          </div>
+          <!-- Fields -->
+          <div class="grid grid-cols-1 gap-4">
+            <div class="bg-secondary-fixed-dim/20 p-4 rounded-lg border-2 border-secondary border-dashed relative">
+              <span class="absolute -top-3 right-4 bg-secondary text-on-secondary font-label-caps text-xs px-2 py-1 rounded rotate-3 shadow-sm">Mais Importante!</span>
+              <label class="font-label-caps text-xs text-on-surface-variant block mb-1" for="reg-nickname">Apelido Caipira</label>
+              <input class="w-full bg-surface-container-lowest border-2 border-outline rounded px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary transition-colors" id="reg-nickname" placeholder="Ex: Chico Bento, Rosinha..." type="text"/>
+            </div>
+            <div>
+              <label class="font-label-caps text-xs text-on-surface-variant block mb-1" for="reg-name">Nome Real</label>
+              <input class="w-full bg-surface-container-lowest border-2 border-outline rounded px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary transition-colors" id="reg-name" placeholder="Seu nome verdadeiro" type="text"/>
+            </div>
+            <div>
+              <label class="font-label-caps text-xs text-on-surface-variant block mb-1" for="reg-email">E-mail</label>
+              <input class="w-full bg-surface-container-lowest border-2 border-outline rounded px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary transition-colors" id="reg-email" placeholder="seu@email.com" type="email"/>
+            </div>
+            <div>
+              <label class="font-label-caps text-xs text-on-surface-variant block mb-1" for="reg-password">Senha (Segredo da Vó)</label>
+              <input class="w-full bg-surface-container-lowest border-2 border-outline rounded px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary transition-colors" id="reg-password" placeholder="••••••••" type="password"/>
+            </div>
+          </div>
+          <button id="register-button" onclick="doRegister()" class="wood-plank text-on-primary border-4 border-on-surface rounded py-4 font-headline-md text-base relative overflow-hidden hover:rotate-1 hover:scale-[1.02] active:scale-95 transition-all shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] flex items-center justify-center gap-2 mt-2">
+            <div class="absolute top-1.5 left-1.5 w-2 h-2 rounded-full bg-on-surface shadow-inner"></div>
+            <div class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-on-surface shadow-inner"></div>
+            <div class="absolute bottom-1.5 left-1.5 w-2 h-2 rounded-full bg-on-surface shadow-inner"></div>
+            <div class="absolute bottom-1.5 right-1.5 w-2 h-2 rounded-full bg-on-surface shadow-inner"></div>
+            Entrar na Festança!
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- LOGIN FORM -->
+      <div id="form-login" class="hidden bg-surface-container rounded-b-xl rounded-tl-xl border-4 border-t-0 border-secondary shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden">
+        <div class="h-4 w-full chita-pattern border-b-4 border-secondary"></div>
+        <div class="p-6 flex flex-col gap-5">
+          <h1 class="font-headline-xl text-2xl text-primary text-center font-extrabold -rotate-1">Arraiá Digital</h1>
+          <div>
+            <label class="font-label-caps text-xs text-on-surface block mb-1" for="login-user">E-mail</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-secondary"><span class="material-symbols-outlined">person</span></span>
+              <input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border-2 border-secondary rounded font-body-md text-on-surface focus:outline-none focus:border-primary transition-shadow shadow-[2px_2px_0px_0px_rgba(74,55,40,0.2)]" id="login-user" placeholder="seu@email.com" type="email"/>
+            </div>
+          </div>
+          <div>
+            <label class="font-label-caps text-xs text-on-surface block mb-1" for="login-password">Senha (Segredo da Vó)</label>
+            <div class="relative">
+              <span class="absolute inset-y-0 left-0 flex items-center pl-3 text-secondary"><span class="material-symbols-outlined">lock</span></span>
+              <input class="w-full pl-10 pr-4 py-3 bg-surface-container-lowest border-2 border-secondary rounded font-body-md text-on-surface focus:outline-none focus:border-primary transition-shadow shadow-[2px_2px_0px_0px_rgba(74,55,40,0.2)]" id="login-password" placeholder="••••••••" type="password"/>
+            </div>
+          </div>
+          <button onclick="doLogin()" class="relative bg-secondary hover:bg-on-secondary-fixed-variant text-on-secondary font-headline-md text-base py-4 px-6 rounded border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(74,55,40,0.6)] hover:shadow-[6px_6px_0px_0px_rgba(74,55,40,0.6)] transition-all hover:-rotate-1 hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-2">
+            <div class="absolute top-1.5 left-1.5 w-2 h-2 rounded-full bg-surface-dim border border-on-surface"></div>
+            <div class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-surface-dim border border-on-surface"></div>
+            <div class="absolute bottom-1.5 left-1.5 w-2 h-2 rounded-full bg-surface-dim border border-on-surface"></div>
+            <div class="absolute bottom-1.5 right-1.5 w-2 h-2 rounded-full bg-surface-dim border border-on-surface"></div>
+            Entrar na Festança!
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">local_fire_department</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== INÍCIO ==================== -->
+<div id="page-inicio" class="page">
+  <!-- Bandeirinhas -->
+  <div aria-hidden="true" class="absolute top-16 left-0 md:left-80 w-full h-12 flex justify-between overflow-hidden opacity-80 pointer-events-none z-0">
+    <div class="bandeirinha w-0 h-0 border-l-[30px] border-r-[30px] border-t-[40px] border-l-transparent border-r-transparent border-t-primary"></div>
+    <div class="bandeirinha w-0 h-0 border-l-[30px] border-r-[30px] border-t-[40px] border-l-transparent border-r-transparent border-t-secondary-container mt-2"></div>
+    <div class="bandeirinha w-0 h-0 border-l-[30px] border-r-[30px] border-t-[40px] border-l-transparent border-r-transparent border-t-tertiary-container"></div>
+    <div class="bandeirinha w-0 h-0 border-l-[30px] border-r-[30px] border-t-[40px] border-l-transparent border-r-transparent border-t-primary mt-3"></div>
+    <div class="bandeirinha w-0 h-0 border-l-[30px] border-r-[30px] border-t-[40px] border-l-transparent border-r-transparent border-t-secondary-container"></div>
+    <div class="bandeirinha w-0 h-0 border-l-[30px] border-r-[30px] border-t-[40px] border-l-transparent border-r-transparent border-t-tertiary-container mt-2"></div>
+    <div class="bandeirinha w-0 h-0 border-l-[30px] border-r-[30px] border-t-[40px] border-l-transparent border-r-transparent border-t-primary"></div>
+  </div>
+  <main class="flex-1 max-w-[container-max] mx-auto w-full p-4 md:p-8 flex flex-col gap-8 relative mt-8">
+    <!-- Welcome -->
+    <section class="z-10 relative bg-surface-container-high rounded-xl p-6 border-4 border-secondary shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] -rotate-1 transform">
+      <div class="absolute -top-3 -left-3 w-5 h-5 bg-secondary rounded-full flex items-center justify-center"><div class="w-2 h-2 bg-on-secondary-container rounded-full"></div></div>
+      <div class="absolute -top-3 -right-3 w-5 h-5 bg-secondary rounded-full flex items-center justify-center"><div class="w-2 h-2 bg-on-secondary-container rounded-full"></div></div>
+      <div class="absolute -bottom-3 -left-3 w-5 h-5 bg-secondary rounded-full flex items-center justify-center"><div class="w-2 h-2 bg-on-secondary-container rounded-full"></div></div>
+      <div class="absolute -bottom-3 -right-3 w-5 h-5 bg-secondary rounded-full flex items-center justify-center"><div class="w-2 h-2 bg-on-secondary-container rounded-full"></div></div>
+      <h2 class="font-headline-lg text-xl text-primary mb-1 font-bold">Bem-vindo(a) ao Arraiá, <span id="inicio-name">@Festeiro</span>! 🎉</h2>
+      <p class="font-body-md text-on-surface-variant">Pegue seu chapéu de palha e venha aproveitar a festança!</p>
+    </section>
+    <section class="grid grid-cols-1 sm:grid-cols-2 gap-4 z-10 relative">
+      <article class="bg-secondary-container text-on-secondary-container rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] p-5">
+        <p class="font-label-caps text-xs uppercase">Grãos de Milho</p>
+        <strong id="home-grains" class="font-headline-xl text-3xl block mt-1">0</strong>
+        <p class="font-body-md text-sm mt-2">Sua pontuação de fidelidade do arraial.</p>
+      </article>
+      <article class="bg-surface-container rounded-xl border-4 border-outline-variant shadow-[6px_6px_0px_0px_rgba(74,55,40,0.25)] p-5">
+        <p class="font-label-caps text-xs uppercase text-secondary">Menu otimizado</p>
+        <strong class="font-headline-md text-lg block mt-1">Busca + filtros rápidos</strong>
+        <p class="font-body-md text-sm text-on-surface-variant mt-2">Encontre comidas por nome ou categoria sem caçar no cardápio.</p>
+      </article>
+    </section>
+    <!-- Shows highlight -->
+    <section class="z-10 relative">
+      <h3 class="font-headline-md text-lg text-tertiary mb-4 flex items-center gap-2 font-bold">
+        <span class="material-symbols-outlined">music_note</span> Destaques do Palco
+      </h3>
+      <div class="bg-tertiary-container text-on-tertiary-container rounded-xl overflow-hidden border-4 border-tertiary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] flex flex-col sm:flex-row items-center rotate-1 transform hover:scale-[1.01] transition-transform">
+        <div class="chita-pattern w-full sm:w-1/4 h-24 sm:h-auto self-stretch border-b-4 sm:border-b-0 sm:border-r-4 border-tertiary"></div>
+        <div class="p-5 flex-1 flex flex-col sm:flex-row items-center justify-between gap-4 w-full">
+          <div>
+            <span id="home-show-status" class="bg-secondary-container text-on-secondary-container font-label-caps text-xs px-2 py-1 rounded mb-2 inline-block shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)]">Ao Vivo</span>
+            <h4 id="home-show-title" class="font-headline-md text-base font-bold">Trio Pé de Serra</h4>
+            <p id="home-show-subtitle" class="font-body-md text-sm opacity-90">Palco Principal</p>
+          </div>
+          <button onclick="navigate('shows')" class="wood-texture text-on-secondary font-label-caps text-xs px-5 py-3 rounded border-2 border-on-secondary-fixed-variant shadow-[4px_4px_0px_0px_rgba(74,55,40,0.6)] hover:-rotate-2 hover:scale-105 transition-transform flex items-center gap-2 whitespace-nowrap">
+            <span class="material-symbols-outlined text-base">visibility</span> Ver Programação
+          </button>
+        </div>
+      </div>
+    </section>
+    <!-- Navigation grid -->
+    <section class="z-10 relative">
+      <h3 class="font-headline-md text-lg text-primary mb-4 flex items-center gap-2 font-bold">
+        <span class="material-symbols-outlined">storefront</span> Explore as Barracas
+      </h3>
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <a onclick="navigate('registro')" href="#" class="group relative bg-surface-container rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden aspect-square flex flex-col hover:-translate-y-2 hover:-rotate-1 transition-all duration-300">
+          <div class="chita-pattern h-1/3 w-full border-b-4 border-secondary flex items-center justify-center"><div class="bg-background rounded-full p-1.5 border-2 border-secondary"><span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">local_activity</span></div></div>
+          <div class="p-3 flex-1 flex flex-col justify-center items-center text-center wood-texture text-on-secondary"><h4 class="font-headline-md text-sm drop-shadow-md font-bold">Bilheteria</h4></div>
+        </a>
+        <a onclick="navigate('jogos')" href="#" class="group relative bg-surface-container rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden aspect-square flex flex-col hover:-translate-y-2 hover:rotate-1 transition-all duration-300">
+          <div class="chita-pattern h-1/3 w-full border-b-4 border-secondary flex items-center justify-center"><div class="bg-background rounded-full p-1.5 border-2 border-secondary"><span class="material-symbols-outlined text-tertiary text-2xl" style="font-variation-settings:'FILL' 1;">attractions</span></div></div>
+          <div class="p-3 flex-1 flex flex-col justify-center items-center text-center wood-texture text-on-secondary"><h4 class="font-headline-md text-sm drop-shadow-md font-bold">Jogos</h4></div>
+        </a>
+        <a onclick="navigate('comida')" href="#" class="group relative bg-surface-container rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden aspect-square flex flex-col hover:-translate-y-2 hover:-rotate-2 transition-all duration-300">
+          <div class="chita-pattern h-1/3 w-full border-b-4 border-secondary flex items-center justify-center"><div class="bg-background rounded-full p-1.5 border-2 border-secondary"><span class="material-symbols-outlined text-error text-2xl" style="font-variation-settings:'FILL' 1;">restaurant</span></div></div>
+          <div class="p-3 flex-1 flex flex-col justify-center items-center text-center wood-texture text-on-secondary"><h4 class="font-headline-md text-sm drop-shadow-md font-bold">Comidas</h4></div>
+        </a>
+        <a onclick="navigate('correio')" href="#" class="group relative bg-surface-container rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden aspect-square flex flex-col hover:-translate-y-2 hover:rotate-2 transition-all duration-300">
+          <div class="chita-pattern h-1/3 w-full border-b-4 border-secondary flex items-center justify-center"><div class="bg-background rounded-full p-1.5 border-2 border-secondary"><span class="material-symbols-outlined text-primary text-2xl" style="font-variation-settings:'FILL' 1;">favorite</span></div></div>
+          <div class="p-3 flex-1 flex flex-col justify-center items-center text-center wood-texture text-on-secondary"><h4 class="font-headline-md text-sm drop-shadow-md font-bold">Correio do Amor</h4></div>
+        </a>
+        <a onclick="navigate('prisao')" href="#" class="group relative bg-surface-container rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden aspect-square flex flex-col hover:-translate-y-2 hover:-rotate-1 transition-all duration-300">
+          <div class="chita-pattern h-1/3 w-full border-b-4 border-secondary flex items-center justify-center"><div class="bg-background rounded-full p-1.5 border-2 border-secondary"><span class="material-symbols-outlined text-on-surface text-2xl" style="font-variation-settings:'FILL' 1;">lock</span></div></div>
+          <div class="p-3 flex-1 flex flex-col justify-center items-center text-center wood-texture text-on-secondary"><h4 class="font-headline-md text-sm drop-shadow-md font-bold">Prisão</h4></div>
+        </a>
+        <a onclick="navigate('vidente')" href="#" class="group relative bg-surface-container rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden aspect-square flex flex-col hover:-translate-y-2 hover:rotate-1 transition-all duration-300">
+          <div class="chita-pattern h-1/3 w-full border-b-4 border-secondary flex items-center justify-center"><div class="bg-background rounded-full p-1.5 border-2 border-secondary"><span class="material-symbols-outlined text-tertiary text-2xl">psychology</span></div></div>
+          <div class="p-3 flex-1 flex flex-col justify-center items-center text-center wood-texture text-on-secondary"><h4 class="font-headline-md text-sm drop-shadow-md font-bold">Vidente</h4></div>
+        </a>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ==================== PERFIL ==================== -->
+<div id="page-perfil" class="page">
+  <div class="max-w-2xl mx-auto px-4 py-8">
+    <div class="flex items-center gap-4 mb-8">
+      <div class="h-1 bg-red-700 flex-1 rounded-full"></div>
+      <h2 class="text-2xl font-extrabold text-red-800 uppercase tracking-tight">Meu Perfil</h2>
+      <div class="h-1 bg-red-700 flex-1 rounded-full"></div>
+    </div>
+    <div class="bg-white rounded-3xl shadow-xl shadow-orange-200/50 overflow-hidden border border-orange-100">
+      <div class="bg-red-700 p-6 text-white text-center">
+        <div class="w-24 h-24 bg-white rounded-full mx-auto mb-4 border-4 border-orange-200 flex items-center justify-center overflow-hidden">
+          <span class="material-symbols-outlined text-6xl text-orange-200" style="font-variation-settings:'FILL' 1;">account_circle</span>
+        </div>
+        <h3 id="profile-header-name" class="text-xl font-bold">---</h3>
+      </div>
+      <div class="p-8 space-y-5">
+        <div class="flex items-center gap-4 border-b border-orange-50 pb-4">
+          <span class="material-symbols-outlined text-orange-400">badge</span>
+          <div>
+            <label class="block text-[10px] uppercase font-bold text-gray-400">Nome Completo</label>
+            <p id="profile-name" class="text-gray-800 font-semibold">---</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 border-b border-orange-50 pb-4">
+          <span class="material-symbols-outlined text-orange-400">mail</span>
+          <div>
+            <label class="block text-[10px] uppercase font-bold text-gray-400">E-mail de Contato</label>
+            <p id="profile-email" class="text-gray-800 font-semibold">---</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 border-b border-orange-50 pb-4">
+          <span class="material-symbols-outlined text-orange-400">toll</span>
+          <div>
+            <label class="block text-[10px] uppercase font-bold text-gray-400">Fichas Acumuladas</label>
+            <p id="profile-tokens" class="text-3xl font-extrabold text-red-700">0</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 border-b border-orange-50 pb-4">
+          <span class="material-symbols-outlined text-orange-400">grain</span>
+          <div>
+            <label class="block text-[10px] uppercase font-bold text-gray-400">Grãos de Milho</label>
+            <p id="profile-grains" class="text-3xl font-extrabold text-secondary">0</p>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 border-b border-orange-50 pb-4">
+          <span class="material-symbols-outlined text-orange-400">military_tech</span>
+          <div>
+            <label class="block text-[10px] uppercase font-bold text-gray-400">Nível</label>
+            <p id="profile-level" class="text-gray-800 font-semibold">---</p>
+          </div>
+        </div>
+        <button id="edit-profile-btn" onclick="toggleEditProfile()" class="bg-red-700 hover:bg-red-800 text-white font-bold py-4 rounded-2xl w-full shadow-lg shadow-red-200 uppercase tracking-widest text-sm transition-all hover:scale-[1.02]">
+          Editar Perfil
+        </button>
+        <button onclick="doLogout()" class="bg-surface-container hover:bg-surface-container-high text-on-surface-variant font-bold py-3 rounded-2xl w-full text-sm border-2 border-outline-variant transition-all mt-2">
+          Sair da Festa 👋
+        </button>
+      </div>
+    </div>
+    <section class="bg-white rounded-3xl shadow-xl shadow-orange-200/50 overflow-hidden border border-orange-100 mt-6 p-6">
+      <h3 class="text-lg font-bold text-red-800 mb-4">Últimas movimentações</h3>
+      <div id="transaction-list" class="space-y-3"></div>
+    </section>
+    <section class="bg-white rounded-3xl shadow-xl shadow-orange-200/50 overflow-hidden border border-orange-100 mt-6 p-6">
+      <h3 class="text-lg font-bold text-red-800 mb-4">Grãos de Milho</h3>
+      <div id="grain-transaction-list" class="space-y-3"></div>
+    </section>
+  </div>
+</div>
+
+<!-- ==================== COMIDA ==================== -->
+<div id="page-comida" class="page">
+  <div class="px-4 md:px-8 py-6">
+    <section class="relative bg-inverse-surface rounded-xl p-6 mb-8 shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] border-4 border-secondary rotate-1 transform">
+      <div class="text-center">
+        <h2 class="font-headline-lg text-xl text-secondary-fixed mb-1 font-bold uppercase tracking-widest" style="text-shadow:2px 2px 0px rgba(0,0,0,0.5);">Cardápio</h2>
+        <p class="font-body-md text-sm text-inverse-on-surface">Escolha suas delícias e pague com Fichas!</p>
+      </div>
+    </section>
+    <section class="bg-surface-container-low border-2 border-outline-variant rounded-xl p-4 mb-6 shadow-[4px_4px_0px_0px_rgba(74,55,40,0.2)]">
+      <div class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-4 items-center">
+        <label class="relative block">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
+          <input id="menu-search" oninput="setMenuSearch(this.value)" class="w-full pl-10 pr-4 py-3 bg-surface border-2 border-outline rounded-lg focus:outline-none focus:border-primary" placeholder="Buscar pamonha, doce, bebida..." type="search"/>
+        </label>
+        <div id="menu-category-filters" class="flex flex-wrap gap-2"></div>
+      </div>
+    </section>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="food-grid">
+      <!-- Food items inserted by JS -->
+    </div>
+    <!-- Floating cart -->
+    <div class="fixed bottom-20 left-0 md:left-80 w-full md:w-[calc(100%-320px)] px-4 z-40 pointer-events-none">
+      <div class="max-w-[container-max] mx-auto flex justify-end">
+        <div class="pointer-events-auto bg-tertiary-container text-on-tertiary-container rounded-xl border-4 border-inverse-surface shadow-[8px_8px_0px_0px_rgba(74,55,40,0.8)] p-4 flex items-center justify-between gap-4 -rotate-1 max-w-xs w-full">
+          <div class="flex items-center gap-3">
+            <div class="relative">
+              <span class="material-symbols-outlined text-3xl" style="font-variation-settings:'FILL' 1;">shopping_bag</span>
+              <span id="cart-count" class="absolute -top-2 -right-2 bg-primary text-on-primary font-label-caps text-[10px] w-5 h-5 flex items-center justify-center rounded-full border-2 border-tertiary-container">0</span>
+            </div>
+            <div>
+              <p class="font-label-caps text-xs opacity-90">Total</p>
+              <p id="cart-total" class="font-headline-md text-base flex items-center gap-1 font-bold">0 <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">token</span></p>
+            </div>
+          </div>
+          <button id="pay-now" onclick="payCart()" class="bg-secondary-container text-on-secondary-container font-label-caps text-xs px-4 py-3 rounded border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(0,0,0,0.3)] hover:bg-secondary hover:text-on-secondary transition-colors whitespace-nowrap font-bold">
+            Pagar Agora
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== CORREIO ==================== -->
+<div id="page-correio" class="page">
+  <div class="px-4 md:px-8 py-6 max-w-[container-max] mx-auto">
+    <div class="mb-6">
+      <h2 class="font-headline-lg text-xl text-primary font-bold flex items-center gap-2">
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">favorite</span> Correio do Amor
+      </h2>
+      <p class="font-body-md text-sm text-on-surface-variant mt-1">Mande um recadinho, um chamego ou um docinho!</p>
+    </div>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      <!-- Compose -->
+      <div class="lg:col-span-7 bg-surface-container-low border-4 border-secondary rounded-xl shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] overflow-hidden relative">
+        <div class="h-4 w-full chita-pattern border-b-4 border-secondary"></div>
+        <div class="p-6 flex flex-col gap-5">
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-secondary flex items-center gap-2" for="correio-recipient">
+              <span class="material-symbols-outlined text-base">search</span> Para quem? (Apelido)
+            </label>
+            <input class="w-full bg-surface-container-lowest border-2 border-secondary rounded px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary shadow-[inset_2px_2px_0px_0px_rgba(74,55,40,0.2)] placeholder:text-on-surface-variant" id="correio-recipient" placeholder="Ex: Maria Pipoca..." type="text"/>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="font-label-caps text-xs text-secondary flex items-center gap-2" for="correio-message">
+              <span class="material-symbols-outlined text-base">edit_document</span> Seu Recadinho
+            </label>
+            <textarea class="w-full bg-surface-container-lowest border-2 border-secondary rounded px-4 py-3 font-body-md text-on-surface focus:outline-none focus:border-primary shadow-[inset_2px_2px_0px_0px_rgba(74,55,40,0.2)] placeholder:text-on-surface-variant resize-none" id="correio-message" placeholder="Escreva aqui seu bilhete..." rows="4"></textarea>
+          </div>
+          <div class="flex flex-col gap-3">
+            <span class="font-label-caps text-xs text-secondary">Estilo de Envio</span>
+            <div class="grid grid-cols-3 gap-3">
+              <label class="relative flex items-center justify-center p-3 border-2 border-secondary rounded bg-surface cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:bg-primary-container has-[:checked]:border-primary shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)]">
+                <input checked class="peer sr-only" name="message_style" type="radio" value="direct"/>
+                <div class="flex flex-col items-center gap-1"><span class="material-symbols-outlined text-secondary text-lg">person</span><span class="font-label-caps text-[11px]">Direto</span></div>
+              </label>
+              <label class="relative flex items-center justify-center p-3 border-2 border-secondary rounded bg-surface cursor-pointer hover:bg-surface-variant transition-colors has-[:checked]:bg-secondary-container has-[:checked]:border-secondary shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)]">
+                <input class="peer sr-only" name="message_style" type="radio" value="anonymous"/>
+                <div class="flex flex-col items-center gap-1"><span class="material-symbols-outlined text-secondary text-lg">masks</span><span class="font-label-caps text-[11px]">Anônimo</span></div>
+              </label>
+              <label class="relative flex items-center justify-center p-3 border-2 border-primary rounded bg-primary-fixed cursor-pointer hover:bg-primary-fixed-dim transition-colors has-[:checked]:bg-primary has-[:checked]:text-on-primary shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)]">
+                <input class="peer sr-only" name="message_style" type="radio" value="mimo"/>
+                <div class="flex flex-col items-center gap-1"><span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings:'FILL' 1;">cake</span><span class="font-label-caps text-[11px] text-center">Com Mimo<br/><span class="text-[10px] font-normal opacity-90">-1 Ficha</span></span></div>
+              </label>
+            </div>
+          </div>
+          <button onclick="sendCorreio()" class="wood-texture text-inverse-on-surface border-4 border-secondary rounded py-4 px-8 font-headline-md text-sm shadow-[6px_6px_0px_0px_rgba(74,55,40,0.8)] hover:rotate-1 hover:-translate-y-0.5 hover:shadow-[8px_8px_0px_0px_rgba(74,55,40,0.8)] active:translate-y-0.5 active:shadow-[2px_2px_0px_0px_rgba(74,55,40,0.8)] transition-all flex items-center justify-center gap-3 relative overflow-hidden group font-bold">
+            <div class="absolute top-1.5 left-1.5 w-2 h-2 bg-black rounded-full opacity-60"></div>
+            <div class="absolute top-1.5 right-1.5 w-2 h-2 bg-black rounded-full opacity-60"></div>
+            <div class="absolute bottom-1.5 left-1.5 w-2 h-2 bg-black rounded-full opacity-60"></div>
+            <div class="absolute bottom-1.5 right-1.5 w-2 h-2 bg-black rounded-full opacity-60"></div>
+            <span class="material-symbols-outlined group-hover:rotate-12 transition-transform" style="font-variation-settings:'FILL' 1;">send</span>
+            Mandar Correio
+          </button>
+        </div>
+      </div>
+      <!-- Notes panel -->
+      <div class="lg:col-span-5 flex flex-col gap-6">
+        <div class="bg-[#f2d4bf] border-4 border-secondary p-6 shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] rotate-1 relative rounded-xl">
+          <div class="absolute -top-3 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full shadow-md border-2 border-secondary z-10"></div>
+          <h3 class="font-headline-md text-base text-secondary flex items-center gap-2 mb-4 font-bold">
+            <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">mark_email_unread</span> Meus Recadinhos
+          </h3>
+          <div id="message-list" class="flex flex-col gap-3">
+            <p class="font-body-md text-sm text-on-surface-variant">Carregando recadinhos...</p>
+          </div>
+          <button id="note-count-button" class="w-full mt-4 py-2 border-2 border-secondary border-dashed text-secondary font-label-caps text-xs hover:bg-surface transition-colors rounded font-bold">
+            Ver Todos (0)
+          </button>
+        </div>
+        <!-- Mural marquee -->
+        <div class="bg-surface-container-highest border-y-4 border-primary py-4 relative overflow-hidden shadow-[0px_4px_0px_0px_rgba(74,55,40,0.2)] rounded-xl">
+          <div class="absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-surface-container-highest to-transparent z-10"></div>
+          <div class="absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-surface-container-highest to-transparent z-10"></div>
+          <div class="flex items-center gap-4 px-4 overflow-x-auto hide-scrollbar whitespace-nowrap">
+            <span class="bg-primary text-on-primary px-3 py-1 rounded-full font-label-caps text-xs border-2 border-inverse-surface flex items-center gap-1 shrink-0">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1;">campaign</span> MURAL PÚBLICO
+            </span>
+            <span class="font-body-md text-sm text-primary shrink-0">"Para a morena da barraca do beijo: me apaixonei!"</span>
+            <span class="text-secondary shrink-0">•</span>
+            <span class="font-body-md text-sm text-secondary shrink-0">"Luiz, você me deve um quentão!"</span>
+            <span class="text-secondary shrink-0">•</span>
+            <span class="font-body-md text-sm text-primary shrink-0">"A quadrilha do 3º ano foi a melhor!"</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== JOGOS / BARRACAS ==================== -->
+<div id="page-jogos" class="page">
+  <div class="px-4 md:px-8 py-6 max-w-[container-max] mx-auto">
+    <section class="text-center space-y-4 mb-8 relative z-10">
+      <div class="inline-block bg-secondary-container border-4 border-on-surface p-4 -rotate-1 shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] relative">
+        <div class="absolute top-1.5 left-1.5 w-2 h-2 rounded-full bg-on-surface"></div>
+        <div class="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-on-surface"></div>
+        <div class="absolute bottom-1.5 left-1.5 w-2 h-2 rounded-full bg-on-surface"></div>
+        <div class="absolute bottom-1.5 right-1.5 w-2 h-2 rounded-full bg-on-surface"></div>
+        <h2 class="font-headline-xl text-xl text-on-surface uppercase tracking-wider font-extrabold">Parque de Diversões</h2>
+      </div>
+      <p class="font-body-md text-sm text-on-surface-variant max-w-2xl mx-auto bg-surface-container-high p-4 rounded-lg border-2 border-outline border-dashed">Venha testar sua mira, sorte e rapidez! Acumule fichas.</p>
+    </section>
+    <section id="games-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <p class="text-sm text-on-surface-variant">Carregando barracas...</p>
+    </section>
+  </div>
+</div>
+
+<!-- ==================== SHOWS ==================== -->
+<div id="page-shows" class="page">
+  <div class="px-4 md:px-8 py-6 max-w-[container-max] mx-auto">
+    <section class="mb-8 relative">
+      <div class="wood-texture p-4 rounded-xl shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] border-4 border-on-secondary-container overflow-hidden relative">
+        <div class="absolute inset-y-0 left-0 w-12 chita-pattern z-10 border-r-4 border-on-secondary-container"></div>
+        <div class="absolute inset-y-0 right-0 w-12 chita-pattern z-10 border-l-4 border-on-secondary-container"></div>
+        <div class="text-center py-8 px-16 relative z-0">
+          <h2 class="font-headline-xl text-2xl text-secondary-container drop-shadow-[2px_2px_0px_#271900] mb-1 uppercase tracking-wide font-extrabold">Palco Principal</h2>
+          <p class="font-body-md text-sm text-on-secondary">Shows ao vivo e apresentações culturais</p>
+        </div>
+      </div>
+    </section>
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+      <div class="lg:col-span-8 space-y-6">
+        <div class="paper-texture p-6 rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)] relative">
+          <div class="absolute top-0 left-0 w-full h-3 chita-pattern border-b-2 border-secondary rounded-t-xl"></div>
+          <div class="flex justify-between items-center mt-3 mb-4">
+            <h3 class="font-headline-lg text-lg text-primary flex items-center gap-2 font-bold">
+              <span class="material-symbols-outlined text-error animate-pulse" style="font-variation-settings:'FILL' 1;">sensors</span> Ao Vivo Agora
+            </h3>
+            <span class="bg-error text-on-error font-label-caps text-xs px-3 py-1 rounded-full shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)] border-2 border-on-error-container font-bold">LIVE</span>
+          </div>
+          <div onclick="toast('Assistindo ao show! Aproveite a música! 🎶','success')" class="aspect-video bg-surface-container-highest border-4 border-secondary shadow-[inset_0px_4px_8px_rgba(0,0,0,0.2)] rounded-lg relative overflow-hidden flex items-center justify-center cursor-pointer group">
+            <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/20 transition-colors"></div>
+            <img class="absolute inset-0 w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJWYmQbklxgoms-obV8JRWM6UDrdChCV3S5lCEJZW3aAg__Q6ZAF3kCwSX4SQLgiJJBvmFNrmQkEcKyVEP92YFGh7PEWfaw_NC504tq5KmNRc88RL9MHPKdxQr5V9dsGJbnWUXl4cfSBNi_FeMXymX7eYaQcu-nJLoOBiUj8wJBIzxd3Z6taf6o1liXhtrEAEv4v_Psl4S-YH40FkOhqvp3w88L2N9B9vXYOnJpxpIuUsh9tn_T10t-0658HYq2gXK5-gb6GVU4b2H" alt="Show ao vivo"/>
+            <div class="relative z-20 wood-texture w-16 h-16 rounded-full flex items-center justify-center border-4 border-secondary-container shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-secondary-container text-3xl" style="font-variation-settings:'FILL' 1;">play_arrow</span>
+            </div>
+          </div>
+          <div class="mt-4">
+            <h4 id="show-live-title" class="font-headline-md text-base text-on-surface font-bold">Trio Pé de Serra "Os Nordestinos"</h4>
+            <p id="show-live-description" class="font-body-md text-sm text-on-surface-variant">Forró autêntico para esquentar a noite do Arraiá.</p>
+          </div>
+        </div>
+      </div>
+      <div class="lg:col-span-4">
+        <div class="paper-texture p-6 rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)]">
+          <h3 class="font-headline-md text-base text-secondary mb-5 text-center border-b-2 border-outline-variant pb-3 border-dashed font-bold">Programação</h3>
+          <div id="show-schedule-list" class="space-y-3">
+            <p class="text-sm text-on-secondary">Carregando programação...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <section class="paper-texture mt-8 p-6 rounded-xl border-4 border-secondary shadow-[6px_6px_0px_0px_rgba(74,55,40,0.4)]">
+      <div class="mb-4">
+        <p class="font-label-caps text-xs text-secondary uppercase">Spotify</p>
+        <h3 class="font-headline-md text-lg text-primary font-bold">Playlist do Arraiá</h3>
+      </div>
+      <div id="spotify-player-shell" class="rounded-xl overflow-hidden border-2 border-outline-variant bg-surface">
+        <p id="spotify-empty-state" class="p-6 text-sm text-on-surface-variant">A playlist ainda não foi configurada pelo Prefeito.</p>
+        <iframe id="spotify-embed" class="hidden w-full h-[352px]" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ==================== PREFEITO ==================== -->
+<div id="page-prefeito" class="page">
+  <div class="px-4 md:px-8 py-6 max-w-[container-max] mx-auto space-y-6">
+    <section class="bg-surface-container-high rounded-xl border-4 border-secondary shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] p-6">
+      <p class="font-label-caps text-xs text-secondary uppercase">Administração</p>
+      <h2 class="font-headline-lg text-xl text-primary font-bold">Dashboard do Prefeito</h2>
+      <p class="font-body-md text-sm text-on-surface-variant mt-1">Resumo rápido do arraial e controles essenciais.</p>
+    </section>
+
+    <div id="mayor-access-note" class="hidden bg-error-container text-on-error-container border-2 border-error rounded-xl p-4 font-semibold">
+      Acesso restrito ao Prefeito.
+    </div>
+
+    <section id="mayor-dashboard-content" class="space-y-6">
+      <div class="grid grid-cols-2 lg:grid-cols-6 gap-4">
+        <article class="bg-surface-container rounded-xl border-2 border-outline-variant p-4"><p class="text-xs uppercase text-on-surface-variant">Usuários</p><strong id="metric-users" class="text-2xl text-primary">0</strong></article>
+        <article class="bg-surface-container rounded-xl border-2 border-outline-variant p-4"><p class="text-xs uppercase text-on-surface-variant">Pedidos</p><strong id="metric-orders" class="text-2xl text-primary">0</strong></article>
+        <article class="bg-surface-container rounded-xl border-2 border-outline-variant p-4"><p class="text-xs uppercase text-on-surface-variant">Receita</p><strong id="metric-revenue" class="text-2xl text-primary">0</strong></article>
+        <article class="bg-surface-container rounded-xl border-2 border-outline-variant p-4"><p class="text-xs uppercase text-on-surface-variant">Recados</p><strong id="metric-notes" class="text-2xl text-primary">0</strong></article>
+        <article class="bg-surface-container rounded-xl border-2 border-outline-variant p-4"><p class="text-xs uppercase text-on-surface-variant">Presos</p><strong id="metric-jails" class="text-2xl text-primary">0</strong></article>
+        <article class="bg-surface-container rounded-xl border-2 border-outline-variant p-4"><p class="text-xs uppercase text-on-surface-variant">Grãos</p><strong id="metric-grains" class="text-2xl text-primary">0</strong></article>
+      </div>
+
+      <section class="bg-surface-container-low rounded-xl border-2 border-outline-variant p-5">
+        <h3 class="font-headline-md text-lg text-secondary font-bold mb-4">Pulso do arraial</h3>
+        <div id="mayor-chart" class="space-y-3"></div>
+      </section>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <form onsubmit="saveSpotifySettings(event)" class="bg-surface-container rounded-xl border-2 border-outline-variant p-5 space-y-4">
+          <div>
+            <p class="font-label-caps text-xs text-secondary uppercase">Spotify</p>
+            <h3 class="font-headline-md text-lg font-bold">Playlist do Arraiá</h3>
+          </div>
+          <label class="block">
+            <span class="font-label-caps text-xs text-on-surface-variant">URL de embed</span>
+            <input id="spotify-url-input" class="mt-1 w-full bg-surface border-2 border-outline rounded px-4 py-3" placeholder="https://open.spotify.com/embed/playlist/..." />
+          </label>
+          <button class="bg-primary text-on-primary px-5 py-3 rounded font-bold">Salvar playlist</button>
+        </form>
+
+        <form onsubmit="adjustCornGrains(event)" class="bg-surface-container rounded-xl border-2 border-outline-variant p-5 space-y-4">
+          <div>
+            <p class="font-label-caps text-xs text-secondary uppercase">Grãos de Milho</p>
+            <h3 class="font-headline-md text-lg font-bold">Ajustar pontuação</h3>
+          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <label>
+              <span class="font-label-caps text-xs text-on-surface-variant">Apelido</span>
+              <input id="grain-nickname" class="mt-1 w-full bg-surface border-2 border-outline rounded px-4 py-3" required />
+            </label>
+            <label>
+              <span class="font-label-caps text-xs text-on-surface-variant">Quantidade</span>
+              <input id="grain-delta" type="number" class="mt-1 w-full bg-surface border-2 border-outline rounded px-4 py-3" required />
+            </label>
+          </div>
+          <label class="block">
+            <span class="font-label-caps text-xs text-on-surface-variant">Motivo</span>
+            <input id="grain-reason" class="mt-1 w-full bg-surface border-2 border-outline rounded px-4 py-3" placeholder="ex: participação na quadrilha" />
+          </label>
+          <button class="bg-secondary text-on-secondary px-5 py-3 rounded font-bold">Aplicar ajuste</button>
+        </form>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- ==================== VIDENTE ==================== -->
+<div id="page-vidente" class="page">
+  <div class="min-h-[80vh] flex flex-col items-center justify-center px-4 py-8 gap-8">
+    <div class="text-center">
+      <h2 class="font-headline-xl text-2xl text-on-surface font-extrabold uppercase tracking-widest mb-2">Tenda da Vidente</h2>
+      <p class="font-body-md text-sm text-on-surface-variant">Consulte os mistérios do São João...</p>
+    </div>
+    <div class="flex flex-col items-center gap-2">
+      <button onclick="consultVidente()" class="crystal-ball group relative w-44 h-44 sm:w-56 sm:h-56 rounded-full shadow-[0px_0px_30px_10px_rgba(0,101,122,0.4),inset_0px_-20px_40px_rgba(0,0,0,0.6)] border-4 border-outline-variant bg-surface overflow-hidden focus:outline-none focus:ring-4 focus:ring-secondary-container">
+        <div class="w-full h-full bg-cover bg-center mix-blend-multiply opacity-80" style="background-image:url('https://lh3.googleusercontent.com/aida-public/AB6AXuCvQNaxM7c7TdjmsiXNrM78gIC6sE4tZ9pFh2AUrfxNkycV2-KozW6A79kAy9yN0GM-V8vWnbhgv4HyF_8VcDOIsG49NKuuJzcAsAVZNCRpwDES_o4hkEQwiutBYYQ8ue5H0lahwM1eL1BZlodiiIDh8qD1H2_mas4lnSlSaXQ-z-mWrQdSwDZ4bSoi5exGQ07hjkuDiYVMSSvA8seKVk7PCxE_6XwfQFVG27_rixcqt3moKGzkpvGpplrBEtMI15UkroqLktICNsii')"></div>
+        <div class="absolute top-3 left-6 w-12 h-6 bg-white rounded-full opacity-40 -rotate-[30deg] blur-[2px]"></div>
+        <span class="absolute inset-0 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-opacity font-headline-md text-lg font-bold drop-shadow-md z-20">Revelar!</span>
+      </button>
+      <div class="w-28 h-10 bg-surface-dim mt-[-12px] rounded-[50%] border-b-4 border-secondary shadow-[0px_8px_0px_0px_rgba(40,24,11,0.7)] z-0 relative">
+        <div class="absolute inset-0 rounded-[50%] shadow-[inset_0px_4px_10px_rgba(0,0,0,0.4)]"></div>
+      </div>
+    </div>
+    <div class="w-full max-w-md flex flex-col gap-3">
+      <label class="font-label-caps text-xs text-secondary-fixed-dim block text-center font-bold" for="pergunta">Qual o seu desejo pro São João?</label>
+      <div class="relative">
+        <input class="w-full bg-surface-container-low text-on-surface font-body-md text-base px-5 py-4 border-4 border-outline shadow-[inset_4px_4px_0px_0px_rgba(74,55,40,0.15)] focus:outline-none focus:border-secondary placeholder:text-outline-variant rounded" id="pergunta" placeholder="Ex: Vou encontrar um amor na quadrilha?" type="text"/>
+      </div>
+      <button onclick="consultVidente()" class="relative bg-secondary text-on-secondary font-headline-md text-sm px-6 py-4 shadow-[4px_4px_0px_0px_rgba(40,24,11,1)] hover:-rotate-1 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-3 rounded font-bold">
+        <div class="absolute top-1.5 left-1.5 w-2 h-2 bg-on-surface rounded-full opacity-80"></div>
+        <div class="absolute top-1.5 right-1.5 w-2 h-2 bg-on-surface rounded-full opacity-80"></div>
+        <div class="absolute bottom-1.5 left-1.5 w-2 h-2 bg-on-surface rounded-full opacity-80"></div>
+        <div class="absolute bottom-1.5 right-1.5 w-2 h-2 bg-on-surface rounded-full opacity-80"></div>
+        <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1;">auto_awesome</span>
+        Consultar os Astros
+      </button>
+    </div>
+    <div id="prediction-card" class="w-full max-w-2xl bg-surface border-2 border-outline p-8 shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] relative rotate-1 hidden rounded-xl">
+      <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 bg-primary rounded-full shadow-[inset_-2px_-2px_4px_rgba(0,0,0,0.5),2px_2px_4px_rgba(0,0,0,0.3)] flex items-center justify-center z-10">
+        <div class="w-3 h-3 bg-inverse-surface rounded-full"></div>
+      </div>
+      <div class="absolute top-0 left-0 w-full h-3 rounded-t-xl" style="background-image:repeating-linear-gradient(90deg,#b7102a 0px,#b7102a 10px,#ffb702 10px,#ffb702 20px,#00657a 20px,#00657a 30px);"></div>
+      <div class="text-center pt-4">
+        <span class="material-symbols-outlined text-secondary text-3xl mb-2 block" style="font-variation-settings:'FILL' 1;">local_fire_department</span>
+        <p id="prediction-text" class="font-headline-lg text-lg text-primary leading-tight font-bold italic"></p>
+        <p class="font-body-md text-sm text-outline mt-4">O destino foi lido...</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== PRISÃO ==================== -->
+<div id="page-prisao" class="page">
+  <div class="px-4 md:px-8 py-6 max-w-[container-max] mx-auto space-y-8">
+    <section class="text-center">
+      <h2 class="font-headline-xl text-2xl text-primary mb-3 font-extrabold">A Prisão do Arraiá</h2>
+      <p class="font-body-md text-sm text-on-surface-variant max-w-2xl mx-auto">Quem aprontou vai pro xadrez! Mande seus amigos pra prisão ou pague a fiança pra ser solto.</p>
+    </section>
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <!-- Mandar prender -->
+      <section class="bg-surface-container shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] border-4 border-secondary p-6 relative rounded-xl">
+        <div class="absolute top-0 left-0 w-full h-3 chita-pattern border-b-2 border-secondary rounded-t-xl"></div>
+        <h3 class="font-headline-md text-base text-secondary mt-3 mb-5 flex items-center gap-2 font-bold">
+          <span class="material-symbols-outlined">gavel</span> Mandar Prender
+        </h3>
+        <div class="space-y-4">
+          <p class="font-body-md text-sm text-on-surface-variant">Custa <span class="font-bold text-primary">2 Fichas</span> pra prender um amigo!</p>
+          <div class="relative">
+            <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-base">search</span>
+            <input id="prisao-victim" class="w-full pl-9 pr-4 py-3 bg-surface border-2 border-outline focus:border-primary focus:ring-0 font-body-md text-sm text-on-surface shadow-[4px_4px_0px_0px_rgba(74,55,40,0.2)] rounded" placeholder="Buscar por apelido..." type="text"/>
+          </div>
+          <button onclick="prendeAmigo()" class="wood-plank w-full py-4 text-on-secondary font-headline-md text-sm text-center shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] hover:rotate-2 transition-transform rounded flex items-center justify-center gap-2 font-bold">
+            Prender Agora! (2 <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">token</span>)
+          </button>
+        </div>
+      </section>
+      <!-- Xadrez -->
+      <section class="bg-surface-container shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] border-4 border-secondary p-6 relative rounded-xl">
+        <h3 class="font-headline-md text-base text-primary mb-5 flex items-center gap-2 font-bold">
+          <span class="material-symbols-outlined">lock</span> Xadrez Cheio
+        </h3>
+        <div id="jail-records" class="grid grid-cols-2 gap-4">
+          <p class="text-sm text-on-surface-variant col-span-2">Carregando xadrez...</p>
+        </div>
+      </section>
+    </div>
+    <!-- Resgate -->
+    <section class="bg-secondary-fixed shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] border-4 border-secondary p-8 text-center relative rounded-xl">
+      <div class="absolute -top-6 left-1/2 -translate-x-1/2 bg-surface-container px-4 py-2 border-2 border-secondary shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] -rotate-2 rounded">
+        <span class="font-headline-md text-base text-primary font-bold">Procurado!</span>
+      </div>
+      <h3 class="font-headline-lg text-lg text-on-surface mt-4 mb-3 font-bold">Tá no Xadrez?</h3>
+      <p class="font-body-md text-sm text-on-surface-variant mb-6 max-w-xl mx-auto">Pague a fiança ou tente a sorte respondendo uma pergunta sobre as tradições juninas!</p>
+      <div class="flex flex-col sm:flex-row justify-center gap-4">
+        <button onclick="pagarFianca()" class="wood-plank px-8 py-4 text-on-secondary font-headline-md text-sm text-center shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] hover:-rotate-2 transition-transform rounded font-bold flex items-center justify-center gap-2">
+          Pagar Fiança (1 <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">token</span>)
+        </button>
+        <div class="flex flex-col sm:flex-row gap-3 items-center">
+          <input id="prisao-quiz-answer" type="text" placeholder="Responda aqui..." class="bg-surface border-2 border-secondary px-4 py-3 text-on-surface font-body-md text-sm rounded focus:outline-none focus:border-primary"/>
+          <button onclick="responderQuiz()" class="bg-surface border-4 border-secondary px-6 py-4 text-secondary font-headline-md text-sm text-center shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] hover:rotate-2 transition-transform rounded font-bold">
+            Responder Quiz
+          </button>
+        </div>
+      </div>
+      <p class="text-xs text-on-surface-variant mt-4 italic">Dica: pense em danças, fogueiras, ou santos juninos...</p>
+    </section>
+  </div>
+</div>
+
+</div><!-- end main-content -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+// ======= APP STATE / SUPABASE =======
+const SUPABASE_URL = '%VITE_SUPABASE_URL%';
+const SUPABASE_ANON_KEY = '%VITE_SUPABASE_ANON_KEY%';
+const supabaseConfigured = Boolean(
+  SUPABASE_URL &&
+  SUPABASE_ANON_KEY &&
+  !SUPABASE_URL.includes('%VITE_') &&
+  !SUPABASE_ANON_KEY.includes('%VITE_') &&
+  window.supabase?.createClient
+);
+const db = supabaseConfigured ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY) : null;
+
+let currentPage = 'registro';
+let currentUser = null;
+let currentProfile = null;
+let cart = {};
+let menuItems = [];
+let games = [];
+let shows = [];
+let loveNotes = [];
+let jailRecords = [];
+let festivalSettings = { spotify_embed_url: '' };
+let menuSearch = '';
+let menuCategory = 'Todos';
+let editingProfile = false;
+let authBusy = false;
+
+const vidResponses = [
+  'Santo Antônio sorriu e vai dar certo, mas mantenha a fogueira sob controle!',
+  'Os anjos do céu já dançam quadrilha por você. Vá com fé!',
+  'A sorte vai vir com um docinho na mão. Cuidado com o vento da noite.',
+  'O destino diz: prepare-se, que hoje tem surpresa boa no arraial.',
+  'O coração diz sim, mas não esqueça de ser gentil com quem te ajuda.',
+  'A lua ilumina seu caminho; encontre alguém especial na barraca do beijo.',
+  'Forró na pista, amor no ar. Só falta você pular a fogueira!',
+];
+
+const DEFAULT_FOOD_IMAGE = 'https://lh3.googleusercontent.com/aida-public/AB6AXuDqsvplRNxQNR_XL29WbQ3gcOuFpIvx7pqD3JvqxK-FWMgXY6vHxAuVJeU0pUKolFMmcJtHnyCKq7sr4lrfXPlfqQLXpHsnXO0aR8x3MkDq_G0Jj6XZt8k5NDjpXC3R9QBX1xSNtoKKvX2TutbwkJ7W9bEshXF1PeS3XvlpmrI1vM2cIfyiScUrLBXiCiM9uy58i3Ugb59YM35asfcHVT7D2Y7UNh4bD4-98yNl58yloQSRL1AHkIrxv2sttydhvYXxPEdkWdXN-X2J';
+
+const LOCAL_ACCOUNT_KEY = 'festaJuninaLocalAccount';
+const LOCAL_TRANSACTIONS_KEY = 'festaJuninaLocalTransactions';
+const LOCAL_GRAIN_TRANSACTIONS_KEY = 'festaJuninaLocalGrainTransactions';
+const LOCAL_NOTES_KEY = 'festaJuninaLocalNotes';
+const LOCAL_JAIL_KEY = 'festaJuninaLocalJail';
+const LOCAL_SETTINGS_KEY = 'festaJuninaLocalSettings';
+
+const LOCAL_MENU_ITEMS = [
+  { id: 'local-pamonha', name: 'Pamonha Tradicional', description: 'Milho verde fresquinho e doce na medida.', category: 'Salgados', price: 3, image_url: DEFAULT_FOOD_IMAGE },
+  { id: 'local-milho', name: 'Milho Cozido', description: 'Com manteiga derretendo.', category: 'Salgados', price: 2, image_url: DEFAULT_FOOD_IMAGE },
+  { id: 'local-pastel', name: 'Pastel de Feira', description: 'Crocante e bem recheado.', category: 'Salgados', price: 4, image_url: DEFAULT_FOOD_IMAGE },
+  { id: 'local-canjica', name: 'Canjica', description: 'Cremosa e com canela.', category: 'Doces', price: 3, image_url: DEFAULT_FOOD_IMAGE },
+  { id: 'local-quentao', name: 'Quentão', description: 'Esquenta a noite do arraial.', category: 'Bebidas', price: 2, image_url: DEFAULT_FOOD_IMAGE },
+];
+
+const LOCAL_GAMES = [
+  { id: 'local-pescaria', game_key: 'pescaria', name: 'Pescaria', description: 'Pesque o prêmio certo antes do tempo acabar.', cost: 5, reward_tokens: 10, win_chance: 0.45 },
+  { id: 'local-tomba-lata', game_key: 'tomba-lata', name: 'Tomba-lata', description: 'Teste a mira e derrube tudo.', cost: 3, reward_tokens: 7, win_chance: 0.5 },
+  { id: 'local-boca-palhaco', game_key: 'boca-palhaco', name: 'Boca do Palhaço', description: 'Acertou a boca, levou.', cost: 4, reward_tokens: 9, win_chance: 0.42 },
+];
+
+function buildLocalShows() {
+  const base = new Date();
+  base.setHours(0, 0, 0, 0);
+  const at = (hours, minutes = 0) => new Date(base.getTime() + ((hours * 60) + minutes) * 60000).toISOString();
+  return [
+    { id: 'local-show-1', title: 'Quadrilha Infantil', artist: 'Escola Municipal', description: 'Abertura da noite.', starts_at: at(18), is_live: false },
+    { id: 'local-show-2', title: 'Trio Pé de Serra', artist: 'Os Nordestinos', description: 'Forró ao vivo.', starts_at: at(19, 30), is_live: true },
+    { id: 'local-show-3', title: 'Grande Quadrilha', artist: 'Turma do Arraiá', description: 'Encerramento principal.', starts_at: at(23), is_live: false },
+  ];
+}
+
+function createLocalId(prefix) {
+  return `${prefix}-${crypto.randomUUID ? crypto.randomUUID() : Date.now() + '-' + Math.random().toString(16).slice(2)}`;
+}
+
+function readLocalValue(key, fallback) {
+  try {
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function writeLocalValue(key, value) {
+  localStorage.setItem(key, JSON.stringify(value));
+}
+
+function getLocalAccount() {
+  return readLocalValue(LOCAL_ACCOUNT_KEY, null);
+}
+
+function saveLocalAccount(account) {
+  writeLocalValue(LOCAL_ACCOUNT_KEY, account);
+}
+
+function isLocalMode() {
+  return Boolean(currentUser?.local);
+}
+
+function hydrateLocalState(account) {
+  currentUser = {
+    id: account.id,
+    email: account.email,
+    local: true,
+  };
+  syncProfile({
+    id: account.id,
+    nickname: account.nickname,
+    full_name: account.full_name,
+    avatar_id: account.avatar_id,
+    tokens: account.tokens,
+    corn_grains: account.corn_grains || 0,
+    level: account.level,
+    role: 'user',
+    local: true,
+  });
+}
+
+function persistLocalProfile() {
+  if (!isLocalMode() || !currentProfile) return;
+  const account = getLocalAccount();
+  if (!account) return;
+  saveLocalAccount({
+    ...account,
+    nickname: currentProfile.nickname,
+    full_name: currentProfile.full_name,
+    avatar_id: currentProfile.avatar_id,
+    tokens: currentProfile.tokens,
+    corn_grains: currentProfile.corn_grains || 0,
+    level: currentProfile.level,
+  });
+}
+
+function appendLocalTransaction(delta, reason) {
+  const transactions = readLocalValue(LOCAL_TRANSACTIONS_KEY, []);
+  transactions.unshift({
+    id: createLocalId('transaction'),
+    delta,
+    reason,
+    created_at: new Date().toISOString(),
+  });
+  writeLocalValue(LOCAL_TRANSACTIONS_KEY, transactions.slice(0, 20));
+}
+
+function updateLocalTokens(delta, reason) {
+  const nextBalance = (currentProfile?.tokens || 0) + delta;
+  if (nextBalance < 0) return false;
+  syncProfile({ ...currentProfile, tokens: nextBalance });
+  persistLocalProfile();
+  appendLocalTransaction(delta, reason);
+  return true;
+}
+
+function appendLocalGrainTransaction(delta, reason) {
+  const transactions = readLocalValue(LOCAL_GRAIN_TRANSACTIONS_KEY, []);
+  transactions.unshift({
+    id: createLocalId('grain'),
+    delta,
+    reason,
+    created_at: new Date().toISOString(),
+  });
+  writeLocalValue(LOCAL_GRAIN_TRANSACTIONS_KEY, transactions.slice(0, 20));
+}
+
+function updateLocalGrains(delta, reason) {
+  const nextBalance = (currentProfile?.corn_grains || 0) + delta;
+  if (nextBalance < 0) return false;
+  syncProfile({ ...currentProfile, corn_grains: nextBalance });
+  persistLocalProfile();
+  appendLocalGrainTransaction(delta, reason);
+  return true;
+}
+
+function canAccessMayorDashboard() {
+  return isLocalMode() || currentProfile?.role === 'admin';
+}
+
+function escapeHtml(value = '') {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#039;');
+}
+
+function formatError(error, fallback = 'Algo deu errado. Tente novamente.') {
+  const message = error?.message || fallback;
+  const translations = {
+    not_authenticated: 'Faça login para continuar.',
+    empty_cart: 'Seu carrinho está vazio.',
+    invalid_menu_item: 'Um item do cardápio não está mais disponível.',
+    insufficient_tokens: 'Fichas insuficientes.',
+    recipient_not_found: 'Não encontrei esse destinatário.',
+    prisoner_not_found: 'Não encontrei esse apelido.',
+    cannot_jail_yourself: 'Você não pode prender você mesmo.',
+    not_in_jail: 'Você não está preso agora.',
+    profile_not_found: 'Perfil não encontrado.',
+    profile_not_found_or_insufficient_grains: 'Perfil não encontrado ou saldo de grãos insuficiente.',
+    invalid_note_style: 'Esse estilo de recado não é válido.',
+    invalid_delta: 'A quantidade precisa ser diferente de zero.',
+    not_authorized: 'Acesso permitido apenas ao Prefeito.',
+    game_not_found: 'Esse jogo não está disponível.',
+    'Invalid login credentials': 'E-mail ou senha incorretos.',
+    'Email not confirmed': 'Confirme seu e-mail antes de entrar.',
+    'User already registered': 'Esse e-mail já está cadastrado.',
+    'email rate limit exceeded': 'Limite de e-mails atingido no Supabase. Aguarde um pouco ou desative a confirmação de e-mail no painel.',
+    'Email signups are disabled': 'Cadastros por e-mail estão desativados no Supabase. Ative o provedor Email e permita novos usuários.',
+  };
+  return translations[message] || message || fallback;
+}
+
+function toast(msg, type = 'primary', duration = 2800) {
+  const c = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  el.className = 'toast-item';
+  el.textContent = msg;
+  el.style.backgroundColor = type === 'danger' ? '#ba1a1a' : type === 'success' ? '#007f99' : '#7d5800';
+  c.appendChild(el);
+  requestAnimationFrame(() => { el.classList.add('show'); });
+  setTimeout(() => { el.classList.remove('show'); setTimeout(() => el.remove(), 200); }, duration);
+}
+
+function ensureConfigured() {
+  if (db) return true;
+  toast('Configure VITE_SUPABASE_URL e VITE_SUPABASE_ANON_KEY para ligar o banco.', 'danger', 4200);
+  return false;
+}
+
+function requireAuth() {
+  if (currentUser && currentProfile) return true;
+  toast('Faça login para continuar.', 'danger');
+  navigate('registro');
+  return false;
+}
+
+function syncProfile(nextProfile) {
+  currentProfile = {
+    corn_grains: 0,
+    ...nextProfile,
+  };
+  updateUserDisplay();
+  if (currentPage === 'perfil') updatePerfil();
+}
+
+async function fetchProfile() {
+  const { data, error } = await db
+    .from('profiles')
+    .select('*')
+    .eq('id', currentUser.id)
+    .single();
+  if (error) throw error;
+  return data;
+}
+
+async function hydrateAuthenticatedState(user) {
+  currentUser = user;
+  const profile = await fetchProfile();
+  syncProfile(profile);
+}
+
+// ======= NAVIGATION =======
+async function navigate(page) {
+  if (page !== 'registro' && !requireAuth()) return;
+
+  document.querySelectorAll('.page').forEach((p) => p.classList.remove('active'));
+  const target = document.getElementById('page-' + page);
+  if (!target) return;
+  target.classList.add('active');
+  currentPage = page;
+  window.scrollTo(0, 0);
+
+  document.querySelectorAll('.sidebar-link').forEach((link) => {
+    link.classList.toggle('text-primary', link.dataset.page === page);
+    link.classList.toggle('font-bold', link.dataset.page === page);
+    link.classList.toggle('bg-surface-variant', link.dataset.page === page);
+    link.classList.toggle('text-on-surface-variant', link.dataset.page !== page);
+  });
+
+  document.querySelectorAll('.bottom-nav-btn').forEach((button) => {
+    button.classList.toggle('nav-active', button.dataset.nav === page);
+  });
+
+  try {
+    if (page === 'inicio') await updateInicio();
+    if (page === 'perfil') await updatePerfil();
+    if (page === 'comida') await loadMenuItems();
+    if (page === 'correio') await loadLoveNotes();
+    if (page === 'jogos') await loadGames();
+    if (page === 'shows') await loadShows();
+    if (page === 'prisao') await loadJailRecords();
+    if (page === 'prefeito') await loadMayorDashboard();
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+// ======= HAMBURGER =======
+function openHamburger() {
+  const overlay = document.getElementById('hamburger-overlay');
+  overlay.classList.remove('hidden');
+  overlay.style.display = 'flex';
+  if (currentProfile) {
+    document.getElementById('ham-name').textContent = currentProfile.nickname;
+    document.getElementById('ham-fichas').textContent = currentProfile.tokens + ' Fichas';
+    document.getElementById('ham-grains').textContent = (currentProfile.corn_grains || 0) + ' Grãos de Milho';
+  }
+}
+
+function closeHamburger() {
+  document.getElementById('hamburger-overlay').classList.add('hidden');
+  document.getElementById('hamburger-overlay').style.display = '';
+}
+
+document.getElementById('hamburger-backdrop').addEventListener('click', closeHamburger);
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape') closeHamburger();
+});
+
+// ======= USER DISPLAY / PROFILE =======
+function updateUserDisplay() {
+  if (!currentProfile) return;
+  document.getElementById('sidebar-name').textContent = currentProfile.nickname || '---';
+  document.getElementById('sidebar-fichas').textContent = (currentProfile.tokens || 0) + ' Fichas';
+  document.getElementById('sidebar-grains').textContent = (currentProfile.corn_grains || 0) + ' Grãos de Milho';
+  document.getElementById('sidebar-level').textContent = 'Nível: ' + (currentProfile.level || 'Caipira Iniciante');
+  document.getElementById('token-badge-mobile').textContent = currentProfile.tokens || 0;
+  document.getElementById('sidebar-prefeito-link').classList.toggle('hidden', !canAccessMayorDashboard());
+  document.getElementById('hamburger-prefeito-link').classList.toggle('hidden', !canAccessMayorDashboard());
+}
+
+async function updateInicio() {
+  if (!currentProfile) return;
+  document.getElementById('inicio-name').textContent = '@' + currentProfile.nickname;
+  document.getElementById('home-grains').textContent = currentProfile.corn_grains || 0;
+  if (!shows.length) await loadShows(false);
+  renderHomeShowHighlight();
+}
+
+async function updatePerfil() {
+  if (!requireAuth()) return;
+  document.getElementById('profile-header-name').textContent = currentProfile.nickname;
+  document.getElementById('profile-name').textContent = currentProfile.full_name || 'Não informado';
+  document.getElementById('profile-email').textContent = currentUser?.email || 'Não informado';
+  document.getElementById('profile-tokens').textContent = currentProfile.tokens || 0;
+  document.getElementById('profile-grains').textContent = currentProfile.corn_grains || 0;
+  document.getElementById('profile-level').textContent = currentProfile.level || 'Caipira Iniciante';
+  await loadTokenTransactions();
+  await loadGrainTransactions();
+}
+
+
+async function toggleEditProfile() {
+  if (!requireAuth()) return;
+  const nicknameEl = document.getElementById('profile-header-name');
+  const nameEl = document.getElementById('profile-name');
+  const btn = document.getElementById('edit-profile-btn');
+
+  if (!editingProfile) {
+    nicknameEl.contentEditable = 'true';
+    nameEl.contentEditable = 'true';
+    nicknameEl.classList.add('border-b-2', 'border-white', 'outline-none');
+    nameEl.classList.add('border-b-2', 'border-primary', 'outline-none');
+    btn.textContent = 'Salvar';
+    editingProfile = true;
+    nameEl.focus();
+    return;
+  }
+
+  const nickname = nicknameEl.textContent.trim();
+  const fullName = nameEl.textContent.trim();
+  if (!nickname || !fullName) {
+    toast('Apelido e nome não podem ficar vazios.', 'danger');
+    return;
+  }
+
+  try {
+    if (isLocalMode()) {
+      syncProfile({ ...currentProfile, nickname, full_name: fullName });
+      persistLocalProfile();
+    } else {
+      const { data, error } = await db.rpc('update_own_profile', {
+        p_full_name: fullName,
+        p_nickname: nickname,
+        p_avatar_id: currentProfile.avatar_id || '1',
+      });
+      if (error) throw error;
+      syncProfile(data);
+    }
+
+    nicknameEl.contentEditable = 'false';
+    nameEl.contentEditable = 'false';
+    nicknameEl.classList.remove('border-b-2', 'border-white', 'outline-none');
+    nameEl.classList.remove('border-b-2', 'border-primary', 'outline-none');
+    btn.textContent = 'Editar Perfil';
+    editingProfile = false;
+    toast('Perfil atualizado!', 'success');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+async function loadTokenTransactions() {
+  const container = document.getElementById('transaction-list');
+  if (!container || !requireAuth()) return;
+  container.innerHTML = '<p class="text-sm text-on-surface-variant">Carregando movimentações...</p>';
+
+  let data;
+  if (isLocalMode()) {
+    data = readLocalValue(LOCAL_TRANSACTIONS_KEY, []);
+  } else {
+    const response = await db
+      .from('token_transactions')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(10);
+    if (response.error) throw response.error;
+    data = response.data;
+  }
+
+  if (!data.length) {
+    container.innerHTML = '<p class="text-sm text-on-surface-variant">Nenhuma movimentação ainda.</p>';
+    return;
+  }
+
+  container.innerHTML = data.map((item) => `
+    <div class="flex items-center justify-between gap-4 border-b border-orange-100 pb-3">
+      <div>
+        <p class="font-semibold text-gray-800">${escapeHtml(item.reason.replaceAll('_', ' '))}</p>
+        <p class="text-xs text-gray-400">${new Date(item.created_at).toLocaleString('pt-BR')}</p>
+      </div>
+      <strong class="${item.delta >= 0 ? 'text-tertiary' : 'text-error'}">${item.delta > 0 ? '+' : ''}${item.delta}</strong>
+    </div>
+  `).join('');
+}
+
+async function loadGrainTransactions() {
+  const container = document.getElementById('grain-transaction-list');
+  if (!container || !requireAuth()) return;
+  container.innerHTML = '<p class="text-sm text-on-surface-variant">Carregando pontuação...</p>';
+
+  let data;
+  if (isLocalMode()) {
+    data = readLocalValue(LOCAL_GRAIN_TRANSACTIONS_KEY, []);
+  } else {
+    const response = await db
+      .from('grain_transactions')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .limit(10);
+    if (response.error) throw response.error;
+    data = response.data;
+  }
+
+  if (!data.length) {
+    container.innerHTML = '<p class="text-sm text-on-surface-variant">Nenhum ajuste de pontuação ainda.</p>';
+    return;
+  }
+
+  container.innerHTML = data.map((item) => `
+    <div class="flex items-center justify-between gap-4 border-b border-orange-100 pb-3">
+      <div>
+        <p class="font-semibold text-gray-800">${escapeHtml(item.reason.replaceAll('_', ' '))}</p>
+        <p class="text-xs text-gray-400">${new Date(item.created_at).toLocaleString('pt-BR')}</p>
+      </div>
+      <strong class="${item.delta >= 0 ? 'text-tertiary' : 'text-error'}">${item.delta > 0 ? '+' : ''}${item.delta}</strong>
+    </div>
+  `).join('');
+}
+
+// ======= AUTH =======
+function switchTab(tab) {
+  document.getElementById('form-registro').classList.toggle('hidden', tab === 'login');
+  document.getElementById('form-login').classList.toggle('hidden', tab === 'registro');
+  document.getElementById('tab-registro').classList.toggle('bg-secondary', tab === 'registro');
+  document.getElementById('tab-registro').classList.toggle('text-on-secondary', tab === 'registro');
+  document.getElementById('tab-registro').classList.toggle('bg-surface-container-highest', tab !== 'registro');
+  document.getElementById('tab-registro').classList.toggle('text-on-surface-variant', tab !== 'registro');
+  document.getElementById('tab-login').classList.toggle('bg-secondary', tab === 'login');
+  document.getElementById('tab-login').classList.toggle('text-on-secondary', tab === 'login');
+  document.getElementById('tab-login').classList.toggle('bg-surface-container-highest', tab !== 'login');
+  document.getElementById('tab-login').classList.toggle('text-on-surface-variant', tab !== 'login');
+}
+
+async function doRegister() {
+  if (authBusy) return;
+  const nickname = document.getElementById('reg-nickname').value.trim();
+  const fullName = document.getElementById('reg-name').value.trim();
+  const email = document.getElementById('reg-email').value.trim();
+  const password = document.getElementById('reg-password').value.trim();
+  const avatarId = document.querySelector('input[name="avatar"]:checked')?.value || '1';
+  if (!nickname || !fullName || !email || !password) {
+    toast('Preencha todos os campos para entrar na festança!', 'danger');
+    return;
+  }
+
+  const button = document.getElementById('register-button');
+  authBusy = true;
+  button.disabled = true;
+  button.classList.add('opacity-70');
+
+  try {
+    const existing = getLocalAccount();
+    if (existing && existing.email.toLowerCase() === email.toLowerCase()) {
+      toast('Esse e-mail já está cadastrado neste navegador.', 'danger');
+      return;
+    }
+
+    const account = {
+      id: createLocalId('user'),
+      nickname,
+      full_name: fullName,
+      email,
+      password,
+      avatar_id: avatarId,
+      tokens: 50,
+      corn_grains: 0,
+      level: 'Caipira Iniciante',
+    };
+    saveLocalAccount(account);
+    writeLocalValue(LOCAL_TRANSACTIONS_KEY, [{
+      id: createLocalId('transaction'),
+      delta: 50,
+      reason: 'saldo_inicial',
+      created_at: new Date().toISOString(),
+    }]);
+    hydrateLocalState(account);
+    toast('Bem-vindo(a) ao Arraiá Digital, ' + nickname + '!', 'success');
+    await navigate('inicio');
+  } finally {
+    authBusy = false;
+    button.disabled = false;
+    button.classList.remove('opacity-70');
+  }
+}
+
+async function doLogin() {
+  const identifier = document.getElementById('login-user').value.trim();
+  const password = document.getElementById('login-password').value.trim();
+  if (!identifier || !password) {
+    toast('Informe e-mail e senha.', 'danger');
+    return;
+  }
+
+  const localAccount = getLocalAccount();
+  const matchesLocalAccount = localAccount
+    && password === localAccount.password
+    && [localAccount.email, localAccount.nickname].some((value) => value.toLowerCase() === identifier.toLowerCase());
+
+  if (matchesLocalAccount) {
+    hydrateLocalState(localAccount);
+    toast('Entrando no Arraiá!', 'success');
+    await navigate('inicio');
+    return;
+  }
+
+  if (!ensureConfigured()) return;
+
+  try {
+    const { data, error } = await db.auth.signInWithPassword({ email: identifier, password });
+    if (error) throw error;
+    await hydrateAuthenticatedState(data.user);
+    toast('Entrando no Arraiá!', 'success');
+    await navigate('inicio');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+async function doLogout() {
+  if (!isLocalMode() && db) {
+    await db.auth.signOut();
+  }
+  currentUser = null;
+  currentProfile = null;
+  cart = {};
+  refreshCart();
+  toast('Até a próxima festa!', 'primary');
+  await navigate('registro');
+}
+
+// ======= FOOD / CART =======
+// ======= FOOD / CART =======
+async function loadMenuItems() {
+  const grid = document.getElementById('food-grid');
+  grid.innerHTML = '<p class="text-sm text-on-surface-variant">Carregando cardápio...</p>';
+  if (isLocalMode()) {
+    menuItems = LOCAL_MENU_ITEMS;
+    renderFood();
+    return;
+  }
+  const { data, error } = await db
+    .from('menu_items')
+    .select('*')
+    .eq('active', true)
+    .order('category')
+    .order('name');
+  if (error) throw error;
+  menuItems = data;
+  renderFood();
+}
+
+function setMenuSearch(value) {
+  menuSearch = value.trim().toLowerCase();
+  renderFood();
+}
+
+function setMenuCategory(category) {
+  menuCategory = category;
+  renderFood();
+}
+
+function renderMenuFilters() {
+  const container = document.getElementById('menu-category-filters');
+  const categories = ['Todos', ...new Set(menuItems.map((item) => item.category))];
+  container.innerHTML = categories.map((category) => `
+    <button
+      onclick="setMenuCategory('${escapeHtml(category)}')"
+      class="${menuCategory === category ? 'bg-primary text-on-primary' : 'bg-surface text-on-surface'} px-3 py-2 rounded-full border-2 border-outline-variant font-label-caps text-xs font-bold"
+    >
+      ${escapeHtml(category)}
+    </button>
+  `).join('');
+}
+
+function renderFood() {
+  const grid = document.getElementById('food-grid');
+  renderMenuFilters();
+  if (!menuItems.length) {
+    grid.innerHTML = '<p class="text-sm text-on-surface-variant">O cardápio ainda não foi publicado.</p>';
+    refreshCart();
+    return;
+  }
+
+  const visibleItems = menuItems.filter((item) => {
+    const matchesCategory = menuCategory === 'Todos' || item.category === menuCategory;
+    const haystack = `${item.name} ${item.description || ''} ${item.category}`.toLowerCase();
+    const matchesSearch = !menuSearch || haystack.includes(menuSearch);
+    return matchesCategory && matchesSearch;
+  });
+
+  if (!visibleItems.length) {
+    grid.innerHTML = '<p class="text-sm text-on-surface-variant">Nenhum item combina com esse filtro.</p>';
+    refreshCart();
+    return;
+  }
+
+  grid.innerHTML = visibleItems.map((item) => `
+    <article class="bg-surface-container rounded-xl border-2 border-outline p-4 flex flex-col shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] relative">
+      <div class="w-full h-36 bg-surface-dim rounded-lg mb-4 overflow-hidden border-2 border-outline shadow-inner relative">
+        <img alt="${escapeHtml(item.name)}" class="w-full h-full object-cover" src="${escapeHtml(item.image_url || DEFAULT_FOOD_IMAGE)}"/>
+        <div class="absolute top-2 right-2 bg-secondary-container text-on-secondary-container font-label-caps text-xs px-2 py-1 rounded shadow-[2px_2px_0px_0px_rgba(74,55,40,0.4)] rotate-3 flex items-center gap-1">
+          <span class="material-symbols-outlined text-xs" style="font-variation-settings:'FILL' 1;">token</span>${item.price}
+        </div>
+      </div>
+      <div class="flex-1">
+        <h3 class="font-headline-md text-base text-on-surface mb-1 font-bold">${escapeHtml(item.name)}</h3>
+        <p class="font-body-md text-sm text-on-surface-variant line-clamp-2">${escapeHtml(item.description || '')}</p>
+      </div>
+      <button onclick="addToCart('${item.id}')" class="mt-4 w-full py-3 bg-primary text-on-primary font-label-caps text-xs rounded border-2 border-surface-tint shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] flex items-center justify-center gap-2 hover:bg-primary-container hover:text-on-primary-container transition-colors hover:-translate-y-0.5 active:translate-y-0 font-bold">
+        <span class="material-symbols-outlined text-base">add_shopping_cart</span> Adicionar
+      </button>
+    </article>
+  `).join('');
+  refreshCart();
+}
+
+function cartLines() {
+  return Object.entries(cart)
+    .map(([id, quantity]) => ({ item: menuItems.find((menuItem) => menuItem.id === id), quantity }))
+    .filter((line) => line.item && line.quantity > 0);
+}
+
+function addToCart(itemId) {
+  if (!requireAuth()) return;
+  const item = menuItems.find((menuItem) => menuItem.id === itemId);
+  if (!item) return;
+  const currentTotal = cartLines().reduce((sum, line) => sum + line.item.price * line.quantity, 0);
+  if ((currentProfile?.tokens || 0) < currentTotal + item.price) {
+    toast('Você não tem fichas suficientes para adicionar esse item.', 'danger');
+    return;
+  }
+  cart[itemId] = (cart[itemId] || 0) + 1;
+  refreshCart();
+  toast('Adicionado: ' + item.name + '!', 'success');
+}
+
+function refreshCart() {
+  const lines = cartLines();
+  const count = lines.reduce((sum, line) => sum + line.quantity, 0);
+  const total = lines.reduce((sum, line) => sum + line.item.price * line.quantity, 0);
+  document.getElementById('cart-count').textContent = count;
+  document.getElementById('cart-total').innerHTML = total + ' <span class="material-symbols-outlined text-sm" style="font-variation-settings:\'FILL\' 1;">token</span>';
+  const payButton = document.getElementById('pay-now');
+  payButton.disabled = !count || total > (currentProfile?.tokens || 0);
+  payButton.classList.toggle('opacity-60', payButton.disabled);
+}
+
+async function payCart() {
+  if (!requireAuth()) return;
+  const lines = cartLines();
+  if (!lines.length) {
+    toast('Seu carrinho está vazio.', 'danger');
+    return;
+  }
+
+  try {
+    const total = lines.reduce((sum, line) => sum + line.item.price * line.quantity, 0);
+    if (isLocalMode()) {
+      if (!updateLocalTokens(-total, 'compra_comida')) {
+        toast('Fichas insuficientes.', 'danger');
+        return;
+      }
+      updateLocalGrains(total, 'compra_comida');
+      cart = {};
+      refreshCart();
+      toast('Pedido confirmado! Você ganhou ' + total + ' grãos.', 'success');
+      return;
+    }
+
+    const { data, error } = await db.rpc('purchase_menu_items', {
+      p_items: lines.map((line) => ({ menu_item_id: line.item.id, quantity: line.quantity })),
+    });
+    if (error) throw error;
+    syncProfile({
+      ...currentProfile,
+      tokens: data.balance,
+      corn_grains: data.grain_balance ?? currentProfile.corn_grains,
+    });
+    cart = {};
+    refreshCart();
+    toast('Pedido confirmado! Total: ' + data.total + ' fichas.', 'success');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+// ======= CORREIO =======
+// ======= CORREIO =======
+async function loadLoveNotes() {
+  const list = document.getElementById('message-list');
+  list.innerHTML = '<p class="text-sm text-on-surface-variant">Carregando recadinhos...</p>';
+  if (isLocalMode()) {
+    loveNotes = readLocalValue(LOCAL_NOTES_KEY, []);
+    renderLoveNotes();
+    return;
+  }
+  const { data, error } = await db
+    .from('love_notes')
+    .select(`
+      id,
+      content,
+      style,
+      visible_on_mural,
+      created_at,
+      sender:profiles!love_notes_sender_id_fkey(nickname),
+      recipient:profiles!love_notes_recipient_id_fkey(nickname)
+    `)
+    .order('created_at', { ascending: false })
+    .limit(12);
+  if (error) throw error;
+  loveNotes = data;
+  renderLoveNotes();
+}
+
+function renderLoveNotes() {
+  const list = document.getElementById('message-list');
+  const button = document.getElementById('note-count-button');
+  if (!loveNotes.length) {
+    list.innerHTML = '<p class="text-sm text-on-surface-variant">Sua caixa postal ainda está silenciosa.</p>';
+    button.textContent = 'Ver Todos (0)';
+    return;
+  }
+
+  list.innerHTML = loveNotes.map((note, index) => {
+    const from = note.style === 'anonymous' ? 'Anônimo' : (note.sender?.nickname || 'Caipira');
+    const styleClass = note.style === 'mimo'
+      ? 'bg-primary-fixed border-primary rotate-1'
+      : index % 2 === 0
+        ? 'bg-surface border-outline-variant -rotate-1'
+        : 'bg-surface border-outline-variant rotate-1';
+    return `
+      <div class="${styleClass} border-2 p-3 shadow-sm hover:rotate-0 transition-transform cursor-pointer rounded">
+        <p class="font-body-md text-sm text-on-surface line-clamp-2">"${escapeHtml(note.content)}"</p>
+        <span class="text-xs ${note.style === 'mimo' ? 'text-secondary' : 'text-primary'} font-bold mt-2 block">De: ${escapeHtml(from)}</span>
+      </div>
+    `;
+  }).join('');
+  button.textContent = `Ver Todos (${loveNotes.length})`;
+}
+
+async function sendCorreio() {
+  if (!requireAuth()) return;
+  const recipientNickname = document.getElementById('correio-recipient').value.trim();
+  const content = document.getElementById('correio-message').value.trim();
+  const style = document.querySelector('input[name="message_style"]:checked')?.value || 'direct';
+  if (!recipientNickname || !content) {
+    toast('Preencha destinatário e mensagem!', 'danger');
+    return;
+  }
+
+  try {
+    if (isLocalMode()) {
+      if (style === 'mimo' && !updateLocalTokens(-1, 'mimo_correio')) {
+        toast('Você precisa de 1 ficha para enviar com mimo.', 'danger');
+        return;
+      }
+      const note = {
+        id: createLocalId('note'),
+        content,
+        style,
+        created_at: new Date().toISOString(),
+        sender: { nickname: currentProfile.nickname },
+        recipient: { nickname: recipientNickname },
+      };
+      loveNotes = [note, ...readLocalValue(LOCAL_NOTES_KEY, [])].slice(0, 12);
+      writeLocalValue(LOCAL_NOTES_KEY, loveNotes);
+      document.getElementById('correio-recipient').value = '';
+      document.getElementById('correio-message').value = '';
+      renderLoveNotes();
+      toast('Recadinho enviado com sucesso!', 'success');
+      return;
+    }
+
+    const { data, error } = await db.rpc('send_love_note', {
+      p_recipient_nickname: recipientNickname,
+      p_content: content,
+      p_style: style,
+    });
+    if (error) throw error;
+    if (typeof data.balance === 'number') syncProfile({ ...currentProfile, tokens: data.balance });
+    document.getElementById('correio-recipient').value = '';
+    document.getElementById('correio-message').value = '';
+    await loadLoveNotes();
+    toast('Recadinho enviado com sucesso!', 'success');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+// ======= JOGOS =======
+// ======= JOGOS =======
+async function loadGames() {
+  const grid = document.getElementById('games-grid');
+  grid.innerHTML = '<p class="text-sm text-on-surface-variant">Carregando barracas...</p>';
+  if (isLocalMode()) {
+    games = LOCAL_GAMES;
+    renderGames();
+    return;
+  }
+  const { data, error } = await db
+    .from('game_definitions')
+    .select('*')
+    .eq('active', true)
+    .order('cost');
+  if (error) throw error;
+  games = data;
+  renderGames();
+}
+
+function renderGames() {
+  const grid = document.getElementById('games-grid');
+  if (!games.length) {
+    grid.innerHTML = '<p class="text-sm text-on-surface-variant">Nenhum jogo disponível agora.</p>';
+    return;
+  }
+
+  grid.innerHTML = games.map((game) => `
+    <article class="bg-surface-container border-4 border-on-surface shadow-[8px_8px_0px_0px_rgba(74,55,40,0.4)] relative overflow-hidden">
+      <div class="h-36 chita-pattern border-b-4 border-on-surface relative flex items-center justify-center">
+        <span class="material-symbols-outlined text-6xl text-on-primary drop-shadow-md">attractions</span>
+      </div>
+      <div class="p-6 space-y-3">
+        <div class="flex items-center justify-between gap-3">
+          <h3 class="font-headline-lg text-lg text-primary font-bold">${escapeHtml(game.name)}</h3>
+          <span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps text-xs">${Math.round(Number(game.win_chance) * 100)}%</span>
+        </div>
+        <p class="font-body-md text-sm text-on-surface-variant">${escapeHtml(game.description)}</p>
+        <div class="flex items-center gap-2 text-secondary font-label-caps text-xs"><span class="material-symbols-outlined text-base">emoji_events</span><span>Prêmio: ${game.reward_tokens} fichas</span></div>
+        <button onclick="playGame('${game.game_key}')" class="bg-primary text-on-primary font-headline-md text-sm px-6 py-3 border-4 border-on-surface shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] hover:-translate-y-1 transition-all flex items-center justify-center gap-2 font-bold">
+          <span class="material-symbols-outlined text-base" style="font-variation-settings:'FILL' 1;">play_arrow</span> JOGAR (${game.cost} Fichas)
+        </button>
+      </div>
+    </article>
+  `).join('');
+}
+
+async function playGame(gameKey) {
+  if (!requireAuth()) return;
+  try {
+    if (isLocalMode()) {
+      const game = games.find((item) => item.game_key === gameKey);
+      if (!game) {
+        toast('Esse jogo não está disponível.', 'danger');
+        return;
+      }
+      if ((currentProfile?.tokens || 0) < game.cost) {
+        toast('Fichas insuficientes.', 'danger');
+        return;
+      }
+      const won = Math.random() < game.win_chance;
+      const reward = won ? game.reward_tokens : 0;
+      updateLocalTokens(reward - game.cost, 'jogo');
+      toast(
+        won
+          ? `${game.name}: você ganhou ${reward} fichas!`
+          : `${game.name}: não foi dessa vez.`,
+        won ? 'success' : 'danger',
+      );
+      return;
+    }
+
+    const { data, error } = await db.rpc('play_game', { p_game_key: gameKey });
+    if (error) throw error;
+    syncProfile({ ...currentProfile, tokens: data.balance });
+    toast(
+      data.won
+        ? `${data.game_name}: você ganhou ${data.reward} fichas!`
+        : `${data.game_name}: não foi dessa vez.`,
+      data.won ? 'success' : 'danger',
+    );
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+// ======= SHOWS =======
+// ======= SHOWS =======
+async function loadShows(renderPage = true) {
+  if (isLocalMode()) {
+    shows = buildLocalShows();
+    await loadFestivalSettings();
+    if (renderPage) renderShows();
+    renderHomeShowHighlight();
+    return;
+  }
+  const { data, error } = await db
+    .from('shows')
+    .select('*')
+    .order('starts_at');
+  if (error) throw error;
+  shows = data;
+  await loadFestivalSettings();
+  if (renderPage) renderShows();
+  renderHomeShowHighlight();
+}
+
+function renderHomeShowHighlight() {
+  const status = document.getElementById('home-show-status');
+  const title = document.getElementById('home-show-title');
+  const subtitle = document.getElementById('home-show-subtitle');
+  if (!status || !title || !subtitle) return;
+  const highlight = shows.find((show) => show.is_live) || shows[0];
+  if (!highlight) {
+    status.textContent = 'Em breve';
+    title.textContent = 'Programação ainda não publicada';
+    subtitle.textContent = 'Volte mais tarde para ver os horários.';
+    return;
+  }
+  status.textContent = highlight.is_live ? 'Ao Vivo' : 'Próximo no palco';
+  title.textContent = highlight.title;
+  subtitle.textContent = highlight.artist;
+}
+
+function formatShowTime(date) {
+  return new Date(date).toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+}
+
+function renderShows() {
+  const liveTitle = document.getElementById('show-live-title');
+  const liveDescription = document.getElementById('show-live-description');
+  const schedule = document.getElementById('show-schedule-list');
+  const liveShow = shows.find((show) => show.is_live) || shows[0];
+
+  if (liveShow) {
+    liveTitle.textContent = liveShow.title + (liveShow.artist ? ` “${liveShow.artist}”` : '');
+    liveDescription.textContent = liveShow.description || liveShow.artist || '';
+  } else {
+    liveTitle.textContent = 'Nenhum show ao vivo agora';
+    liveDescription.textContent = 'A programação ainda não foi publicada.';
+  }
+
+  if (!shows.length) {
+    schedule.innerHTML = '<p class="text-sm text-on-secondary">A programação ainda não foi publicada.</p>';
+    renderSpotifyEmbed();
+    return;
+  }
+
+  schedule.innerHTML = shows.map((show) => `
+    <div class="${show.is_live ? 'bg-primary-container border-4 border-secondary shadow-[4px_4px_0px_0px_rgba(74,55,40,0.4)] -rotate-1 scale-105 z-10 relative' : 'wood-texture border-2 border-on-secondary-container'} p-3 rounded-lg flex items-center gap-3">
+      <div class="${show.is_live ? 'bg-surface text-primary' : 'bg-surface-container-highest text-on-surface'} px-2 py-1 rounded border-2 border-secondary font-label-caps text-[11px] text-center w-14 shrink-0">${formatShowTime(show.starts_at)}</div>
+      <div class="flex-1 min-w-0">
+        <h5 class="font-body-md text-sm ${show.is_live ? 'text-on-primary-container' : 'text-secondary-container'} font-bold truncate">${escapeHtml(show.title)}</h5>
+        <p class="font-body-md text-xs ${show.is_live ? 'text-on-primary-container opacity-90' : 'text-on-secondary'}">${escapeHtml(show.artist)}</p>
+      </div>
+      ${show.is_live ? '<span class="bg-error text-on-error px-2 py-1 rounded-full text-[10px] font-bold">LIVE</span>' : ''}
+    </div>
+  `).join('');
+  renderSpotifyEmbed();
+}
+
+function normalizeSpotifyEmbedUrl(value) {
+  const raw = value.trim();
+  if (!raw) return '';
+  try {
+    const url = new URL(raw);
+    if (!url.hostname.includes('spotify.com')) return '';
+    if (!url.pathname.startsWith('/embed/')) {
+      url.pathname = '/embed' + url.pathname;
+    }
+    url.search = '';
+    return url.toString();
+  } catch {
+    return '';
+  }
+}
+
+async function loadFestivalSettings() {
+  if (isLocalMode()) {
+    festivalSettings = readLocalValue(LOCAL_SETTINGS_KEY, { spotify_embed_url: '' });
+    renderSpotifyEmbed();
+    return;
+  }
+
+  const { data, error } = await db
+    .from('festival_settings')
+    .select('spotify_embed_url')
+    .eq('id', true)
+    .single();
+  if (error) throw error;
+  festivalSettings = data || { spotify_embed_url: '' };
+  renderSpotifyEmbed();
+}
+
+function renderSpotifyEmbed() {
+  const frame = document.getElementById('spotify-embed');
+  const emptyState = document.getElementById('spotify-empty-state');
+  if (!frame || !emptyState) return;
+  const url = normalizeSpotifyEmbedUrl(festivalSettings.spotify_embed_url || '');
+  frame.classList.toggle('hidden', !url);
+  emptyState.classList.toggle('hidden', Boolean(url));
+  if (url) frame.src = url;
+  else frame.removeAttribute('src');
+}
+
+async function loadMayorDashboard() {
+  const accessNote = document.getElementById('mayor-access-note');
+  const content = document.getElementById('mayor-dashboard-content');
+  const allowed = canAccessMayorDashboard();
+  accessNote.classList.toggle('hidden', allowed);
+  content.classList.toggle('hidden', !allowed);
+  if (!allowed) return;
+
+  await loadFestivalSettings();
+  document.getElementById('spotify-url-input').value = festivalSettings.spotify_embed_url || '';
+
+  let metrics;
+  if (isLocalMode()) {
+    const tokenTransactions = readLocalValue(LOCAL_TRANSACTIONS_KEY, []);
+    const notes = readLocalValue(LOCAL_NOTES_KEY, []);
+    const jails = readLocalValue(LOCAL_JAIL_KEY, []).filter((record) => record.status === 'active');
+    metrics = {
+      users: getLocalAccount() ? 1 : 0,
+      orders: tokenTransactions.filter((item) => item.reason === 'compra_comida').length,
+      revenue_tokens: tokenTransactions
+        .filter((item) => item.reason === 'compra_comida')
+        .reduce((sum, item) => sum + Math.abs(item.delta), 0),
+      love_notes: notes.length,
+      active_jails: jails.length,
+      total_grains: currentProfile?.corn_grains || 0,
+    };
+  } else {
+    const { data, error } = await db.rpc('get_mayor_dashboard');
+    if (error) throw error;
+    metrics = data;
+  }
+
+  renderMayorMetrics(metrics);
+}
+
+function renderMayorMetrics(metrics) {
+  document.getElementById('metric-users').textContent = metrics.users || 0;
+  document.getElementById('metric-orders').textContent = metrics.orders || 0;
+  document.getElementById('metric-revenue').textContent = metrics.revenue_tokens || 0;
+  document.getElementById('metric-notes').textContent = metrics.love_notes || 0;
+  document.getElementById('metric-jails').textContent = metrics.active_jails || 0;
+  document.getElementById('metric-grains').textContent = metrics.total_grains || 0;
+
+  const chartItems = [
+    ['Pedidos', metrics.orders || 0],
+    ['Recados', metrics.love_notes || 0],
+    ['Presos', metrics.active_jails || 0],
+    ['Grãos', metrics.total_grains || 0],
+  ];
+  const maxValue = Math.max(...chartItems.map(([, value]) => value), 1);
+  document.getElementById('mayor-chart').innerHTML = chartItems.map(([label, value]) => `
+    <div>
+      <div class="flex justify-between text-sm mb-1"><span>${label}</span><strong>${value}</strong></div>
+      <div class="h-3 bg-surface rounded-full overflow-hidden border border-outline-variant">
+        <div class="h-full bg-primary" style="width:${Math.max(8, (value / maxValue) * 100)}%"></div>
+      </div>
+    </div>
+  `).join('');
+}
+
+async function saveSpotifySettings(event) {
+  event.preventDefault();
+  if (!canAccessMayorDashboard()) return;
+  const rawValue = document.getElementById('spotify-url-input').value.trim();
+  const spotifyEmbedUrl = normalizeSpotifyEmbedUrl(rawValue);
+  if (rawValue && !spotifyEmbedUrl) {
+    toast('Use uma URL válida do Spotify.', 'danger');
+    return;
+  }
+
+  if (isLocalMode()) {
+    festivalSettings = { spotify_embed_url: spotifyEmbedUrl };
+    writeLocalValue(LOCAL_SETTINGS_KEY, festivalSettings);
+  } else {
+    const { data, error } = await db
+      .from('festival_settings')
+      .update({ spotify_embed_url: spotifyEmbedUrl })
+      .eq('id', true)
+      .select()
+      .single();
+    if (error) throw error;
+    festivalSettings = data;
+  }
+  renderSpotifyEmbed();
+  toast('Playlist salva.', 'success');
+}
+
+async function adjustCornGrains(event) {
+  event.preventDefault();
+  if (!canAccessMayorDashboard()) return;
+  const nickname = document.getElementById('grain-nickname').value.trim();
+  const delta = Number(document.getElementById('grain-delta').value);
+  const reason = document.getElementById('grain-reason').value.trim() || 'ajuste_manual';
+  if (!nickname || !Number.isInteger(delta) || delta === 0) {
+    toast('Informe apelido e uma quantidade válida.', 'danger');
+    return;
+  }
+
+  try {
+    if (isLocalMode()) {
+      if (nickname.toLowerCase() !== currentProfile.nickname.toLowerCase()) {
+        toast('No modo local, só existe o usuário deste navegador.', 'danger');
+        return;
+      }
+      if (!updateLocalGrains(delta, reason)) {
+        toast('O saldo de grãos não pode ficar negativo.', 'danger');
+        return;
+      }
+    } else {
+      const { data, error } = await db.rpc('adjust_grains', {
+        p_nickname: nickname,
+        p_delta: delta,
+        p_reason: reason,
+      });
+      if (error) throw error;
+      if (nickname.toLowerCase() === currentProfile.nickname.toLowerCase()) {
+        syncProfile({ ...currentProfile, corn_grains: data.balance });
+      }
+    }
+
+    document.getElementById('grain-delta').value = '';
+    document.getElementById('grain-reason').value = '';
+    await loadMayorDashboard();
+    toast('Pontuação atualizada.', 'success');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+// ======= VIDENTE =======
+function consultVidente() {
+  const question = document.getElementById('pergunta').value.trim();
+  if (!question) {
+    toast('Faça uma pergunta antes de consultar a vidente!', 'danger');
+    return;
+  }
+  const response = vidResponses[Math.floor(Math.random() * vidResponses.length)];
+  document.getElementById('prediction-text').textContent = '"' + response + '"';
+  const card = document.getElementById('prediction-card');
+  card.classList.remove('hidden');
+  card.style.animation = 'fadeIn 0.3s ease';
+  toast('A vidente leu suas energias ✨', 'success');
+}
+
+// ======= PRISÃO =======
+async function loadJailRecords() {
+  const container = document.getElementById('jail-records');
+  container.innerHTML = '<p class="text-sm text-on-surface-variant col-span-2">Carregando xadrez...</p>';
+  if (isLocalMode()) {
+    jailRecords = readLocalValue(LOCAL_JAIL_KEY, []).filter((record) => record.status === 'active');
+    renderJailRecords();
+    return;
+  }
+  const { data, error } = await db
+    .from('jail_records')
+    .select(`
+      id,
+      status,
+      created_at,
+      prisoner:profiles!jail_records_prisoner_id_fkey(nickname),
+      jailed_by:profiles!jail_records_jailed_by_fkey(nickname)
+    `)
+    .eq('status', 'active')
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  jailRecords = data;
+  renderJailRecords();
+}
+
+function renderJailRecords() {
+  const container = document.getElementById('jail-records');
+  if (!jailRecords.length) {
+    container.innerHTML = '<p class="text-sm text-on-surface-variant col-span-2">O xadrez está vazio por enquanto.</p>';
+    return;
+  }
+
+  container.innerHTML = jailRecords.map((record) => `
+    <div class="bg-surface border-2 border-outline p-3 text-center relative shadow-[4px_4px_0px_0px_rgba(74,55,40,0.2)] rounded">
+      <div class="absolute inset-0 jail-bars z-10 pointer-events-none opacity-70 rounded"></div>
+      <div class="w-16 h-16 mx-auto rounded-full border-2 border-secondary mb-2 bg-secondary-container flex items-center justify-center">
+        <span class="material-symbols-outlined text-secondary text-3xl">person</span>
+      </div>
+      <p class="font-label-caps text-xs text-on-surface font-bold">@${escapeHtml(record.prisoner?.nickname || 'desconhecido')}</p>
+      <p class="font-body-md text-xs text-error mt-1">Preso por @${escapeHtml(record.jailed_by?.nickname || 'desconhecido')}</p>
+    </div>
+  `).join('');
+}
+
+async function prendeAmigo() {
+  if (!requireAuth()) return;
+  const victim = document.getElementById('prisao-victim').value.trim();
+  if (!victim) {
+    toast('Digite o apelido do fujáo!', 'danger');
+    return;
+  }
+
+  try {
+    if (isLocalMode()) {
+      if (!updateLocalTokens(-2, 'prisao')) {
+        toast('Você precisa de 2 fichas para prender alguém.', 'danger');
+        return;
+      }
+      const records = readLocalValue(LOCAL_JAIL_KEY, []);
+      records.unshift({
+        id: createLocalId('jail'),
+        status: 'active',
+        created_at: new Date().toISOString(),
+        prisoner: { nickname: victim },
+        jailed_by: { nickname: currentProfile.nickname },
+      });
+      writeLocalValue(LOCAL_JAIL_KEY, records);
+      document.getElementById('prisao-victim').value = '';
+      await loadJailRecords();
+      toast('@' + victim + ' foi preso(a)!', 'success');
+      return;
+    }
+
+    const { data, error } = await db.rpc('jail_user', { p_prisoner_nickname: victim });
+    if (error) throw error;
+    syncProfile({ ...currentProfile, tokens: data.balance });
+    document.getElementById('prisao-victim').value = '';
+    await loadJailRecords();
+    toast('@' + data.prisoner_nickname + ' foi preso(a)!', 'success');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+async function pagarFianca() {
+  if (!requireAuth()) return;
+  try {
+    if (isLocalMode()) {
+      const records = readLocalValue(LOCAL_JAIL_KEY, []);
+      const target = records.find((record) => record.status === 'active' && record.prisoner?.nickname?.toLowerCase() === currentProfile.nickname.toLowerCase());
+      if (!target) {
+        toast('Você não está preso agora.', 'danger');
+        return;
+      }
+      if (!updateLocalTokens(-1, 'fianca')) {
+        toast('Fichas insuficientes.', 'danger');
+        return;
+      }
+      target.status = 'released';
+      target.release_reason = 'bail';
+      target.released_at = new Date().toISOString();
+      writeLocalValue(LOCAL_JAIL_KEY, records);
+      await loadJailRecords();
+      toast('Fiança paga! Agora você está livre!', 'success');
+      return;
+    }
+
+    const { data, error } = await db.rpc('pay_bail');
+    if (error) throw error;
+    syncProfile({ ...currentProfile, tokens: data.balance });
+    await loadJailRecords();
+    toast('Fiança paga! Agora você está livre!', 'success');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+async function responderQuiz() {
+  if (!requireAuth()) return;
+  const answer = document.getElementById('prisao-quiz-answer').value.trim();
+  if (!answer) {
+    toast('Responda a pergunta antes de tentar.', 'danger');
+    return;
+  }
+
+  try {
+    if (isLocalMode()) {
+      const correct = ['quadrilha', 'fogos', 'fogueira', 'são joão', 'sao joao', 'forró', 'forro', 'bandeirinha']
+        .some((keyword) => answer.toLowerCase().includes(keyword));
+      if (!correct) {
+        toast('Errado! A polícia do Arraiá ficou de olho em você!', 'danger');
+        return;
+      }
+      const records = readLocalValue(LOCAL_JAIL_KEY, []);
+      const target = records.find((record) => record.status === 'active' && record.prisoner?.nickname?.toLowerCase() === currentProfile.nickname.toLowerCase());
+      if (!target) {
+        toast('Você não está preso agora.', 'danger');
+        return;
+      }
+      target.status = 'released';
+      target.release_reason = 'quiz';
+      target.released_at = new Date().toISOString();
+      writeLocalValue(LOCAL_JAIL_KEY, records);
+      updateLocalTokens(2, 'quiz_prisao');
+      document.getElementById('prisao-quiz-answer').value = '';
+      await loadJailRecords();
+      toast('Acertou! Ganhou 2 fichas e está livre!', 'success');
+      return;
+    }
+
+    const { data, error } = await db.rpc('answer_jail_quiz', { p_answer: answer });
+    if (error) throw error;
+    if (!data.correct) {
+      toast('Errado! A polícia do Arraiá ficou de olho em você!', 'danger');
+      return;
+    }
+    syncProfile({ ...currentProfile, tokens: data.balance });
+    document.getElementById('prisao-quiz-answer').value = '';
+    await loadJailRecords();
+    toast('Acertou! Ganhou 2 fichas e está livre!', 'success');
+  } catch (error) {
+    toast(formatError(error), 'danger');
+  }
+}
+
+// ======= INIT =======
+// ======= INIT =======
+document.addEventListener('DOMContentLoaded', async () => {
+  refreshCart();
+
+  const localAccount = getLocalAccount();
+  if (localAccount) {
+    hydrateLocalState(localAccount);
+    await navigate('inicio');
+    return;
+  }
+
+  if (!db) {
+    await navigate('registro');
+    return;
+  }
+
+  const { data, error } = await db.auth.getSession();
+  if (error) {
+    toast(formatError(error), 'danger');
+    await navigate('registro');
+    return;
+  }
+
+  if (data.session?.user) {
+    try {
+      await hydrateAuthenticatedState(data.session.user);
+      await navigate('inicio');
+    } catch (profileError) {
+      toast(formatError(profileError), 'danger');
+      await navigate('registro');
+    }
+  } else {
+    await navigate('registro');
+  }
+
+  db.auth.onAuthStateChange(async (_event, session) => {
+    if (!session?.user) {
+      if (!isLocalMode()) {
+        currentUser = null;
+        currentProfile = null;
+      }
+      return;
+    }
+    try {
+      await hydrateAuthenticatedState(session.user);
+    } catch (profileError) {
+      toast(formatError(profileError), 'danger');
+    }
+  });
+});
+</script>
+</body>
+</html>
